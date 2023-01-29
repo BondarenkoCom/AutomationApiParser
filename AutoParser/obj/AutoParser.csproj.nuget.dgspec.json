@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Honor\\Source\\Repos\\AutomationApiParser\\AutoParser\\AutoParser.csproj": {}
+    "C:\\Users\\Honor\\source\\repos\\AutomationApiParser\\AutoParser\\AutoParser.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Honor\\Source\\Repos\\AutomationApiParser\\AutoParser\\AutoParser.csproj": {
+    "C:\\Users\\Honor\\source\\repos\\AutomationApiParser\\AutoParser\\AutoParser.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Honor\\Source\\Repos\\AutomationApiParser\\AutoParser\\AutoParser.csproj",
+        "projectUniqueName": "C:\\Users\\Honor\\source\\repos\\AutomationApiParser\\AutoParser\\AutoParser.csproj",
         "projectName": "AutoParser",
-        "projectPath": "C:\\Users\\Honor\\Source\\Repos\\AutomationApiParser\\AutoParser\\AutoParser.csproj",
+        "projectPath": "C:\\Users\\Honor\\source\\repos\\AutomationApiParser\\AutoParser\\AutoParser.csproj",
         "packagesPath": "C:\\Users\\Honor\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Honor\\Source\\Repos\\AutomationApiParser\\AutoParser\\obj\\",
+        "outputPath": "C:\\Users\\Honor\\source\\repos\\AutomationApiParser\\AutoParser\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Honor\\AppData\\Roaming\\NuGet\\NuGet.Config",

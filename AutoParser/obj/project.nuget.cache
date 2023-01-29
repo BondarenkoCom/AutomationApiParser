@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9DdVxUnHSSMnJFH3U8lqbp1C+a3LOk4h1LFhUrOrCmddKkAqk5Bmlxqtmh5y8sdYXgdvdZJ8D1MhNdfZ8gkKyg==",
+  "dgSpecHash": "r36caPjF3olA3wsk2P3t2IZyLM4mvaZmPvwdfJE7QMD1Vnd9INOMEb6RlVwwA5xsTr7EGAKGA8UZDtVnWuliHQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Honor\\Source\\Repos\\AutomationApiParser\\AutoParser\\AutoParser.csproj",
+  "projectFilePath": "C:\\Users\\Honor\\source\\repos\\AutomationApiParser\\AutoParser\\AutoParser.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
