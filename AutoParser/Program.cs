@@ -1,6 +1,6 @@
 ﻿using AutoParser.WebDriver;
 
-Console.WriteLine("Commands");
+Console.WriteLine("Commands:");
 
 ApiWebDriver _apiWebDriver = new ApiWebDriver();
 
