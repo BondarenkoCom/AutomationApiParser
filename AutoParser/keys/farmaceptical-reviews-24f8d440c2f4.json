@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "farmaceptical-reviews",
+  "private_key_id": "24f8d440c2f4c5f5854fc0f5c07d07c164847ad5",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC5cNGIREJLiaoh\nutVCb98GNEJISchCSIMNgeveGIGrhklCag4bu7Aq9gNyuOkGCQJEMvCjHftJQk7q\nPKYvYL+NY32dUI3Em9jPumSq+uJXgl+VIlEpUhcp3UYMo9idG9qirx7SDsjqRFiK\nkrJrViXn/FCoBnMx7169FI1ldqnrPxZ7ETvd6sqAyuIAVEIxb2xPoo2xHz1krtSu\nDSy3Ugu5F1xVXyuX6Ps6RX0FqJOwJmDF9nEO47f/sRwoQ81S2LnFfV7ORap6AkrI\nlaswgUw/iUciX2Nq+joFu6zX0CaeIMeaX3Nm1s8vVHQ9Men0/B6i1F0Z8RmsLhBx\nep0QtbrRAgMBAAECggEAErBxHaerest0DxQyXBDETG7F4100RqHiO2FFsUuM/gl5\npqzjoR3oYlwK+uvx6D7OMKtlnzrtUXPSWj8kjI/WnlxRk6JDt3XxgvYJIUZJu4IT\nOgeMYHq6hOidH7b/pM3i2hSGKat9ykZ7GfQw8SpshZXjVxvXTkgOp0XD/l7YPzIf\nTCT9xfSKwx/Q3U7hNatx7itXC9NsasxhQ8TTiHSU5ML6qFpZ2MeArfTrnlOjT5YP\nq09xSN0Mwp+4ByfrfDemzL1UECP+lu0CAhsZcvoUxIDjmi8miZXwsETTErQ7t+hV\nibyzWdCTbSypdLO7jPeCDDJPgLczOQLmLG5cehLPMQKBgQD1CwXTkt9GLZodlEOM\nPaeNqJLpE3+SfLiwCbMnuWrWsMHR7TDMoZas1/w604KLQ4s/8gUav01n0J0YRFT+\n3npxhsmDEACOGpeWTFFA/nEsPG05aNoE6rOvYFliUsW0ax5zE9iSSWVjSGSSi48k\nSI9CZ9+KXuD29x7tcz9Q1DyZTQKBgQDBu4jzDPr6W4o47OiTW76VTDNeuklrpMMY\ngTufAdohy4bnGr3FDA0ulYpZwGHj3cQzzh/m3kh2QeVw4liDzOMvOwP62SCcWz8a\nr+2c7XCa2p7IMGcl9m6HnWE7OnUhxRaBj2Sw4SM8eKpm5I6ljeuFxYEQKXVz5e3M\nFW1gmzoFlQKBgQDvWyUF1aFi24h+/CQ/CLpyFQfrw7AJVurQiakGVIeXznCErjvM\npsqXayJmE9SgVAnhHHb/+X2SuqO44IZlrsvLuO19qFPievc3SLTV17SUkTHfshvE\nUb3SwTqOYGveIARORER4IFl48W3L96aKupW1N+GTN7pnglwjdT+TpLzMwQKBgElA\na4vbAJrhOeZETbxKGEnDQjkzHsfAyLPfSXfZ72yP1DZV+iMjZ2iRynodL+ZE2Abu\njUlyCtwMFoEUVHuhYNVe7yZOKvJz3extUN7hOI6U0yzGgHnuL+S/MSB//gICz3u1\niFEJD5Wx2lyFVxpqCv/Nqfs+cdacvclI4M6CYvHxAoGAbpK+NSullGHfmz2JuntD\npYWfCotyKys0C/7iTUeMmHwWIJRFsHo9pm/AeQ2BjuSWuvA6YRuJZRDSUw89FB1m\nT8TdrcF0cBfclc5sK+CnxjqLPtgRcjkDFzUJgmP4J5uFFvkxTQH9VLpTDNI+dk5E\n4S4no4e/WaguSne/vM9t+4w=\n-----END PRIVATE KEY-----\n",
+  "client_email": "autoparser@farmaceptical-reviews.iam.gserviceaccount.com",
+  "client_id": "100249973410471433548",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/autoparser%40farmaceptical-reviews.iam.gserviceaccount.com"
+}
