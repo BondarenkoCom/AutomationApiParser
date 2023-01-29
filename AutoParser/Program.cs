@@ -12,3 +12,4 @@ Console.WriteLine("Commands:");
 
 
 ImportInformationToGoogleDocs.PushToGoogleSheets();
+Console.WriteLine("Is Ready:");

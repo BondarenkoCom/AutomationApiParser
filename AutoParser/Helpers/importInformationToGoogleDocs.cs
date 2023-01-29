@@ -15,11 +15,11 @@ namespace AutoParser.Helpers
 
         public static string PushToGoogleSheets()
         {
+            //string pathToKey = JsonReader.GetValues().PathToKey;
+            string pathToKey = Path.Combine(Environment.CurrentDirectory, "farmaceptical-reviews.json"); ;
 
-            string pathToKey = JsonReader.GetValues().PathToKey;
-            
             var credential = GoogleCredential.FromFile(pathToKey);
-
+            var pcName = Environment.UserName;
             var sheetsService = new SheetsService(new Google.Apis.Services.BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
@@ -29,10 +29,10 @@ namespace AutoParser.Helpers
             //TODO Reader from datas reviews
             var values= new List<IList<object>>
             {
-                new List<object> {"Samus", "TEXT TEXT TEXT TEXT TEXT TEXT", "5 stars"},
-                new List<object> {"Ada", "TEXT TEXT TEXT TEXT TEXT TEXT", "5 stars"},
-                new List<object> {"Ashley", "TEXT TEXT TEXT TEXT TEXT TEXT", "5 stars"},
-                new List<object> {"Motoko",  "TEXT TEXT TEXT TEXT TEXT TEXT", "5 stars"},
+                new List<object> {"Samus", "TEXT TEXT TEXT TEXT TEXT TEXT", "5 stars",pcName},
+                new List<object> {"Ada", "TEXT TEXT TEXT TEXT TEXT TEXT", "5 stars",pcName},
+                new List<object> {"Ashley", "TEXT TEXT TEXT TEXT TEXT TEXT", "5 stars",pcName},
+                new List<object> {"Motoko",  "TEXT TEXT TEXT TEXT TEXT TEXT", "5 stars",pcName},
             };
 
             var spreadsheetId = JsonReader.GetValues().SpreadsheetId;
