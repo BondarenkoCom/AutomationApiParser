@@ -20,3 +20,9 @@ C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\obj\Release\net6.0\re
 C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\obj\Release\net6.0\AutoParser.pdb
 C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\obj\Release\net6.0\AutoParser.genruntimeconfig.cache
 C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\obj\Release\net6.0\ref\AutoParser.dll
+C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\selenium-manager\linux\selenium-manager
+C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\selenium-manager\macos\selenium-manager
+C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\selenium-manager\windows\selenium-manager.exe
+C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\WebDriver.Support.dll
+C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\WebDriver.dll
+C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\HtmlAgilityPack.dll

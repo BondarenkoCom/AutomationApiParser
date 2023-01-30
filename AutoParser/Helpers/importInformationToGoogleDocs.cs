@@ -13,10 +13,10 @@ namespace AutoParser.Helpers
 
         }
 
-        public static string PushToGoogleSheets()
+        public static string PushToGoogleSheets(string res)
         {
-            //string pathToKey = JsonReader.GetValues().PathToKey;
-            string pathToKey = Path.Combine(Environment.CurrentDirectory, "farmaceptical-reviews.json"); ;
+            string pathToKey = JsonReader.GetValues().PathToKey;
+            //string pathToKey = Path.Combine(Environment.CurrentDirectory, "farmaceptical-reviews.json"); ;
 
             var credential = GoogleCredential.FromFile(pathToKey);
             var pcName = Environment.UserName;
@@ -29,7 +29,7 @@ namespace AutoParser.Helpers
             //TODO Reader from datas reviews
             var values= new List<IList<object>>
             {
-                new List<object> {"Samus", "TEXT TEXT TEXT TEXT TEXT TEXT", "5 stars",pcName},
+                new List<object> { res, "TEXT TEXT TEXT TEXT TEXT TEXT", "5 stars",pcName},
                 new List<object> {"Ada", "TEXT TEXT TEXT TEXT TEXT TEXT", "5 stars",pcName},
                 new List<object> {"Ashley", "TEXT TEXT TEXT TEXT TEXT TEXT", "5 stars",pcName},
                 new List<object> {"Motoko",  "TEXT TEXT TEXT TEXT TEXT TEXT", "5 stars",pcName},

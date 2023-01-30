@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CBxO4nuep31MpU9uCpkwlC/2CyZdwODTqLs7RfrH4YX7OYVKPC+m8UoahRPngQP1F10UIvwzSbnCd8Hzc5cx7g==",
+  "dgSpecHash": "STBctMZRc9kQY12H7Qurx4Rxh8OsKRGXeaaSpcDIrteTYzqsQaSQqceEwHm2NvDC5QuGIunEMg1/0wNnSuS4LQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Honor\\source\\repos\\AutomationApiParser\\AutoParser\\AutoParser.csproj",
   "expectedPackageFiles": [
@@ -8,7 +8,11 @@
     "C:\\Users\\Honor\\.nuget\\packages\\google.apis.auth\\1.59.0\\google.apis.auth.1.59.0.nupkg.sha512",
     "C:\\Users\\Honor\\.nuget\\packages\\google.apis.core\\1.59.0\\google.apis.core.1.59.0.nupkg.sha512",
     "C:\\Users\\Honor\\.nuget\\packages\\google.apis.sheets.v4\\1.59.0.2909\\google.apis.sheets.v4.1.59.0.2909.nupkg.sha512",
-    "C:\\Users\\Honor\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
+    "C:\\Users\\Honor\\.nuget\\packages\\htmlagilitypack\\1.11.46\\htmlagilitypack.1.11.46.nupkg.sha512",
+    "C:\\Users\\Honor\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
+    "C:\\Users\\Honor\\.nuget\\packages\\selenium.support\\4.8.0\\selenium.support.4.8.0.nupkg.sha512",
+    "C:\\Users\\Honor\\.nuget\\packages\\selenium.webdriver\\4.8.0\\selenium.webdriver.4.8.0.nupkg.sha512",
+    "C:\\Users\\Honor\\.nuget\\packages\\selenium.webdriver.chromedriver\\109.0.5414.7400\\selenium.webdriver.chromedriver.109.0.5414.7400.nupkg.sha512"
   ],
   "logs": []
 }

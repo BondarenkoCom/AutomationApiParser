@@ -54,6 +54,15 @@
           "lib/netstandard2.0/Google.Apis.Sheets.v4.dll": {}
         }
       },
+      "HtmlAgilityPack/1.11.46": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/HtmlAgilityPack.dll": {}
+        }
+      },
       "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
@@ -61,6 +70,39 @@
         },
         "runtime": {
           "lib/net6.0/Newtonsoft.Json.dll": {}
+        }
+      },
+      "Selenium.Support/4.8.0": {
+        "type": "package",
+        "dependencies": {
+          "Selenium.WebDriver": "4.8.0"
+        },
+        "compile": {
+          "lib/net6.0/WebDriver.Support.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/WebDriver.Support.dll": {}
+        }
+      },
+      "Selenium.WebDriver/4.8.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "compile": {
+          "lib/net6.0/WebDriver.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/WebDriver.dll": {}
+        },
+        "build": {
+          "build/Selenium.WebDriver.targets": {}
+        }
+      },
+      "Selenium.WebDriver.ChromeDriver/109.0.5414.7400": {
+        "type": "package",
+        "build": {
+          "build/Selenium.WebDriver.ChromeDriver.targets": {}
         }
       }
     }
@@ -162,6 +204,54 @@
         "lib/netstandard2.0/Google.Apis.Sheets.v4.xml"
       ]
     },
+    "HtmlAgilityPack/1.11.46": {
+      "sha512": "dLMn4EVfJBHWmWK4Uh0XGD76FPLHI0qr2Tm0s1m/xmgiHb1JUb9zB8AzO8HtrkBBlMN6JfCUBYddhqC0hZNR+g==",
+      "type": "package",
+      "path": "htmlagilitypack/1.11.46",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "htmlagilitypack.1.11.46.nupkg.sha512",
+        "htmlagilitypack.nuspec",
+        "lib/Net35/HtmlAgilityPack.dll",
+        "lib/Net35/HtmlAgilityPack.pdb",
+        "lib/Net35/HtmlAgilityPack.xml",
+        "lib/Net40-client/HtmlAgilityPack.dll",
+        "lib/Net40-client/HtmlAgilityPack.pdb",
+        "lib/Net40-client/HtmlAgilityPack.xml",
+        "lib/Net40/HtmlAgilityPack.XML",
+        "lib/Net40/HtmlAgilityPack.dll",
+        "lib/Net40/HtmlAgilityPack.pdb",
+        "lib/Net45/HtmlAgilityPack.XML",
+        "lib/Net45/HtmlAgilityPack.dll",
+        "lib/Net45/HtmlAgilityPack.pdb",
+        "lib/NetCore45/HtmlAgilityPack.XML",
+        "lib/NetCore45/HtmlAgilityPack.dll",
+        "lib/NetCore45/HtmlAgilityPack.pdb",
+        "lib/netstandard1.3/HtmlAgilityPack.deps.json",
+        "lib/netstandard1.3/HtmlAgilityPack.dll",
+        "lib/netstandard1.3/HtmlAgilityPack.pdb",
+        "lib/netstandard1.3/HtmlAgilityPack.xml",
+        "lib/netstandard1.6/HtmlAgilityPack.deps.json",
+        "lib/netstandard1.6/HtmlAgilityPack.dll",
+        "lib/netstandard1.6/HtmlAgilityPack.pdb",
+        "lib/netstandard1.6/HtmlAgilityPack.xml",
+        "lib/netstandard2.0/HtmlAgilityPack.deps.json",
+        "lib/netstandard2.0/HtmlAgilityPack.dll",
+        "lib/netstandard2.0/HtmlAgilityPack.pdb",
+        "lib/netstandard2.0/HtmlAgilityPack.xml",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.XML",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.dll",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.pdb",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.XML",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.dll",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.pdb",
+        "lib/uap10.0/HtmlAgilityPack.XML",
+        "lib/uap10.0/HtmlAgilityPack.dll",
+        "lib/uap10.0/HtmlAgilityPack.pdb",
+        "lib/uap10.0/HtmlAgilityPack.pri"
+      ]
+    },
     "Newtonsoft.Json/13.0.2": {
       "sha512": "R2pZ3B0UjeyHShm9vG+Tu0EBb2lC8b0dFzV9gVn50ofHXh9Smjk6kTn7A/FdAsC8B5cKib1OnGYOXxRBz5XQDg==",
       "type": "package",
@@ -191,11 +281,78 @@
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
+    },
+    "Selenium.Support/4.8.0": {
+      "sha512": "5sibZXRPiG/MpHGJzu4S4xkjCbQE04WTO0jWMug7+7DWI3Sqz1aL0dryEZxovQjUb09KB8MpJZtc7NBabJdvtg==",
+      "type": "package",
+      "path": "selenium.support/4.8.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "images/icon.png",
+        "lib/net45/WebDriver.Support.dll",
+        "lib/net46/WebDriver.Support.dll",
+        "lib/net47/WebDriver.Support.dll",
+        "lib/net48/WebDriver.Support.dll",
+        "lib/net5.0/WebDriver.Support.dll",
+        "lib/net6.0/WebDriver.Support.dll",
+        "lib/netstandard2.0/WebDriver.Support.dll",
+        "lib/netstandard2.1/WebDriver.Support.dll",
+        "selenium.support.4.8.0.nupkg.sha512",
+        "selenium.support.nuspec"
+      ]
+    },
+    "Selenium.WebDriver/4.8.0": {
+      "sha512": "12/UPRx8JHOKnQTW4vTeLT+gkMPF/2RJFbGn6rGLj9NBffd62PdXYoFTWFeOwywSfNpWcJVyjzk9MXoJjrA0Ww==",
+      "type": "package",
+      "path": "selenium.webdriver/4.8.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Selenium.WebDriver.targets",
+        "images/icon.png",
+        "lib/net45/WebDriver.dll",
+        "lib/net46/WebDriver.dll",
+        "lib/net47/WebDriver.dll",
+        "lib/net48/WebDriver.dll",
+        "lib/net5.0/WebDriver.dll",
+        "lib/net6.0/WebDriver.dll",
+        "lib/netstandard2.0/WebDriver.dll",
+        "lib/netstandard2.1/WebDriver.dll",
+        "manager/linux/selenium-manager",
+        "manager/macos/selenium-manager",
+        "manager/windows/selenium-manager.exe",
+        "selenium.webdriver.4.8.0.nupkg.sha512",
+        "selenium.webdriver.nuspec"
+      ]
+    },
+    "Selenium.WebDriver.ChromeDriver/109.0.5414.7400": {
+      "sha512": "eTclb0YvUFujj9MCe3RfQvZA9LRcazmqoYzqmrOdW/FMhossjXOpbiaLsUsI84EDNFZQlkRMq4S61XmUtzZOaw==",
+      "type": "package",
+      "path": "selenium.webdriver.chromedriver/109.0.5414.7400",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "build/DefinePropertiesChromeDriver.targets",
+        "build/Selenium.WebDriver.ChromeDriver.targets",
+        "driver/linux64/chromedriver",
+        "driver/mac64/chromedriver",
+        "driver/mac64arm/chromedriver",
+        "driver/win32/chromedriver.exe",
+        "nupkg-icon.png",
+        "selenium.webdriver.chromedriver.109.0.5414.7400.nupkg.sha512",
+        "selenium.webdriver.chromedriver.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Google.Apis.Sheets.v4 >= 1.59.0.2909"
+      "Google.Apis.Sheets.v4 >= 1.59.0.2909",
+      "HtmlAgilityPack >= 1.11.46",
+      "Selenium.Support >= 4.8.0",
+      "Selenium.WebDriver >= 4.8.0",
+      "Selenium.WebDriver.ChromeDriver >= 109.0.5414.7400"
     ]
   },
   "packageFolders": {
@@ -242,6 +399,22 @@
           "Google.Apis.Sheets.v4": {
             "target": "Package",
             "version": "[1.59.0.2909, )"
+          },
+          "HtmlAgilityPack": {
+            "target": "Package",
+            "version": "[1.11.46, )"
+          },
+          "Selenium.Support": {
+            "target": "Package",
+            "version": "[4.8.0, )"
+          },
+          "Selenium.WebDriver": {
+            "target": "Package",
+            "version": "[4.8.0, )"
+          },
+          "Selenium.WebDriver.ChromeDriver": {
+            "target": "Package",
+            "version": "[109.0.5414.7400, )"
           }
         },
         "imports": [

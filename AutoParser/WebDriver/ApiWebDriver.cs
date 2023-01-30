@@ -1,4 +1,6 @@
-﻿using AutoParser.Interfaces;
+﻿using AutoParser.Helpers;
+using AutoParser.Interfaces;
+using AutoParser.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,7 @@ namespace AutoParser.WebDriver
 {
     internal class ApiWebDriver : IWebDriver
     {
+        ResponseSorter _responseSorter = new ResponseSorter();
 
         public async Task<string> RunDriverClient(string url)
         {
@@ -16,27 +19,19 @@ namespace AutoParser.WebDriver
             var client = new HttpClient();
             var request = new HttpRequestMessage
             {
-                Method = HttpMethod.Post,
+                Method = HttpMethod.Get,
                 RequestUri = new Uri(url),
-                Headers =
-                {
-                    //Change place for Tokens
-                    { "X-RapidAPI-Key", "42bd840cd5mshad835b2dc82f2f6p1b7550jsn04da2400b632" },
-                    { "X-RapidAPI-Host", "google-translate1.p.rapidapi.com" },
-                },
-                Content = new FormUrlEncodedContent(new Dictionary<string, string>
-                {
-                    //Make my text parametr
-                    { "q", "English is hard, but detectably so" },
-                }),
             };
+
             using (var response = await client.SendAsync(request))
             {
                 response.EnsureSuccessStatusCode();
-                var body = await response.Content.ReadAsStringAsync();
-                return body;
+                var responseContent = await response.Content.ReadAsStringAsync();
+                
+                //return responseContent;
+                var sortContent = _responseSorter.HtmlConverter(responseContent);
+                return sortContent;
             }
-            return null;
         }
 
         public void StatusTestCode()

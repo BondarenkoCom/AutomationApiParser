@@ -3,13 +3,13 @@ using AutoParser.WebDriver;
 
 Console.WriteLine("Commands:");
 
-//ApiWebDriver _apiWebDriver = new ApiWebDriver();
-//
-//string url = "https://google-translate1.p.rapidapi.com/language/translate/v2/detect";
-//
-//var request = _apiWebDriver.RunDriverClient(url);
-//Console.WriteLine(request.Result);
+ApiWebDriver _apiWebDriver = new ApiWebDriver();
 
+string _url = "https://uteka.ru/lekarstvennye-sredstva/obezbolivayushhie-sredstva/nurofen-ekspress-forte/reviews/";
 
-ImportInformationToGoogleDocs.PushToGoogleSheets();
+var request = _apiWebDriver.RunDriverClient(_url);
+Console.WriteLine(request.Result);
+
+ImportInformationToGoogleDocs.PushToGoogleSheets(request.Result);
 Console.WriteLine("Is Ready:");
+Console.ReadLine();
