@@ -10,51 +10,32 @@ namespace AutoParser.Helpers
         public string HtmlConverter(string responseSort)
         {
             //Make Html converter
-            //var parseModel = JsonConvert.DeserializeObject<ReviewFromUteka>(responseSort);
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(responseSort);
 
-            //var titleNode = htmlDoc.DocumentNode.SelectSingleNode("//title");
-            //string titleText = titleNode.InnerText;
-            //var json = JsonConvert.SerializeObject(new { title = titleText });
-
             //TODO Make json file for safe classes name
             //TODO make to combine authorsText + benefitsText
-            var benefitsText = htmlDoc.DocumentNode.Descendants("div").Where(x => x.GetAttributeValue("class", "") == 
-            "review__content ui-text ui-text_size_l ui-text_type_high ui-text_responsive");
 
-            var authorsText = htmlDoc.DocumentNode.Descendants().Where(x => x.GetAttributeValue("itemprop", "") == "author");
+            string benefitsClassname = "review__content ui-text ui-text_size_l ui-text_type_high ui-text_responsive";
+            string dataTimeClassname = "review__date ui-text ui-text_size_m ui-text_type_high ui-text_responsive";
 
-            //var combineTexts = (benefitsText , authorsText);
+            //Make new helper for search nodes by class/id/etc
+            var benefitsElements = htmlDoc.DocumentNode.SelectNodes($"//div[@class='{benefitsClassname}']");
+            var dataTimeElements = htmlDoc.DocumentNode.SelectNodes($"//div[@class='{dataTimeClassname}']");
 
-            //var divNode = htmlDoc.DocumentNode.SelectSingleNode("//title");
-            //string divText = divNode.InnerText;
-            //var json = JsonConvert.SerializeObject(new { div = divText });
-            //List<string> combineTexts = new List<string>();
-            //combineTexts.Add(benefitsText.ToString());
-            //combineTexts.Add(authorsText.ToString());
-
-            foreach (var text in authorsText)
+            if (benefitsElements != null)
             {
-                return text.InnerHtml;
-                //return text;
+               //Fix problem with copyies first element
+                foreach (var elementData in dataTimeElements)
+                {
+                    foreach (var elementBenefits in benefitsElements)
+                    {
+                      Console.WriteLine($"text - {elementBenefits.InnerText} Data - {elementData}\n---");
+                      ImportInformationToGoogleDocs.PushToGoogleSheets(elementData.InnerText ,elementBenefits.InnerText);
+                    }
+                }
             }
-
-            //foreach (var benefits in benefitsText)
-            //{
-            //    return benefits.InnerHtml;
-            //}
-            
             return null;
-            //TODO Make array data with name customer,rating product,data and text review
-            //< div class="review__content ui-text ui-text_size_l ui-text_type_high ui-text_responsive">
-            //<strong> Достоинства: </strong><span> Быстро снимает боль</span></div>
-
-            //< div class="review__content ui-text ui-text_size_l ui-text_type_high ui-text_responsive">
-            //<strong> Достоинства: </strong><span> Лучшее средства от головной боли</span></div>
-
-            //return json;
-            //return responseSort;
         }
     }
 }

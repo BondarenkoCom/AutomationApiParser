@@ -10,6 +10,6 @@ string _url = "https://uteka.ru/lekarstvennye-sredstva/obezbolivayushhie-sredstv
 var request = _apiWebDriver.RunDriverClient(_url);
 Console.WriteLine(request.Result);
 
-ImportInformationToGoogleDocs.PushToGoogleSheets(request.Result);
+//ImportInformationToGoogleDocs.PushToGoogleSheets(request.Result);
 Console.WriteLine("Is Ready:");
 Console.ReadLine();

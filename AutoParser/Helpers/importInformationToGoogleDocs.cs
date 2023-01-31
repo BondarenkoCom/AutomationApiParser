@@ -13,7 +13,7 @@ namespace AutoParser.Helpers
 
         }
 
-        public static string PushToGoogleSheets(string res)
+        public static string PushToGoogleSheets(string benefits, string dataTime)
         {
             string pathToKey = JsonReader.GetValues().PathToKey;
             //string pathToKey = Path.Combine(Environment.CurrentDirectory, "farmaceptical-reviews.json"); ;
@@ -29,22 +29,26 @@ namespace AutoParser.Helpers
             //TODO Reader from datas reviews
             var values= new List<IList<object>>
             {
-                new List<object> { res, "TEXT TEXT TEXT TEXT TEXT TEXT", "5 stars",pcName},
-                new List<object> {"Ada", "TEXT TEXT TEXT TEXT TEXT TEXT", "5 stars",pcName},
-                new List<object> {"Ashley", "TEXT TEXT TEXT TEXT TEXT TEXT", "5 stars",pcName},
-                new List<object> {"Motoko",  "TEXT TEXT TEXT TEXT TEXT TEXT", "5 stars",pcName},
+                new List<object> {  dataTime, benefits, "5 stars",pcName},
             };
 
-            var spreadsheetId = JsonReader.GetValues().SpreadsheetId;
-            var range = JsonReader.GetValues().SheetRange;
+            foreach (var value in values)
+            {
+              ValueRange requestBody = new ValueRange
+              {
+                  Values = new List<IList<object>> { value}
+              };
+                
+              var spreadsheetId = JsonReader.GetValues().SpreadsheetId;
+              var range = JsonReader.GetValues().SheetRange;
 
-            ValueInputOptionEnum valueInputOption = ValueInputOptionEnum.USERENTERED;
-
-            var updateRequest = sheetsService.Spreadsheets.Values.Update(new ValueRange() { Values = values }, spreadsheetId, range);
-            updateRequest.ValueInputOption = valueInputOption;
-
-            var updateResponse = updateRequest.Execute();
-            return updateResponse.ToString();
+              var request = sheetsService.Spreadsheets.Values.Append(requestBody, spreadsheetId, range);
+              request.InsertDataOption = SpreadsheetsResource.ValuesResource.AppendRequest.InsertDataOptionEnum.INSERTROWS;
+              request.ValueInputOption = SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.RAW;
+              request.Execute();
+            }
+            //TODO make try catch error catcher
+            return null;
         }
     }
 }

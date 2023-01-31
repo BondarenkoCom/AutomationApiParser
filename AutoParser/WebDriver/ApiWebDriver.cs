@@ -28,7 +28,6 @@ namespace AutoParser.WebDriver
                 response.EnsureSuccessStatusCode();
                 var responseContent = await response.Content.ReadAsStringAsync();
                 
-                //return responseContent;
                 var sortContent = _responseSorter.HtmlConverter(responseContent);
                 return sortContent;
             }
