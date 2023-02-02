@@ -2,5 +2,12 @@
   "PathToKey": "C:\\Users\\Honor\\source\\repos\\AutomationApiParser\\AutoParser\\keys\\farmaceptical-reviews.json",
   "ApplicationName": "AutoParser",
   "SpreadsheetId": "15PGqRpgfTNypy2GYpPCdWhfZdLRYqK6ug-fhNgtLiCA",
-  "SheetRange": "A1"
+  "SheetRange": "A1",
+  "WorkUrl": "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/ocillokokcinum/reviews/?page=1",
+  "ReviewBodyClassname": "review__inner",
+  "DataTimeClassname": "review__date ui-text ui-text_size_m ui-text_type_high ui-text_responsive",
+  "AuthorsClassname": "review__author",
+  "RankingStarsItemPropName": "review__rating",
+  "Selector": "$//div[@class=\"",
+  "SelectorEnd": "\"]"
 }

@@ -7,13 +7,7 @@ namespace AutoParser.Helpers
 {
     public static class ImportInformationToGoogleDocs
     {
-
-        public static void SheetsInit()
-        {
-
-        }
-
-        public static string PushToGoogleSheets(string benefits, string dataTime, string author)
+        public static string PushToGoogleSheets(string reviewBody, string dataTime, string author,string ranking)
         {
             string pathToKey = JsonReader.GetValues().PathToKey;
             //string pathToKey = Path.Combine(Environment.CurrentDirectory, "farmaceptical-reviews.json"); ;
@@ -29,7 +23,8 @@ namespace AutoParser.Helpers
             //TODO Reader from datas reviews
             var values= new List<IList<object>>
             {
-                new List<object> {  dataTime, benefits, author, pcName},
+                new List<object> {  dataTime, reviewBody, author, ranking, pcName},
+                
             };
 
             foreach (var value in values)

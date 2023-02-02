@@ -1,18 +1,11 @@
 ﻿using AutoParser.Helpers;
 using AutoParser.Interfaces;
 using AutoParser.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AutoParser.WebDriver
 {
     internal class ApiWebDriver : IWebDriver
     {
-        //ResponseSorter _responseSorter = new ResponseSorter();
-
         public async Task<string> RunDriverClient(string url)
         {
 
@@ -29,25 +22,31 @@ namespace AutoParser.WebDriver
 
                 response.EnsureSuccessStatusCode();
                 var responseContent = await response.Content.ReadAsStringAsync();
-
-                string benefitsClassname = "review__content ui-text ui-text_size_l ui-text_type_high ui-text_responsive";
-                string dataTimeClassname = "review__date ui-text ui-text_size_m ui-text_type_high ui-text_responsive";
-                string authorsClassname = "ui-title ui-title_size_m ui-title_type_high ui-title_responsive";
-
+                
                 ResponseSorter responseSorterClassBenefits = new ResponseSorter();
-                var sorterResultBenefits = responseSorterClassBenefits.HtmlConverter(responseContent, benefitsClassname).ToArray();
-
+                var sorterResultBenefits = responseSorterClassBenefits.HtmlConverter(responseContent,
+                    JsonReader.GetValues().ReviewBodyClassname).ToArray();
+                
                 ResponseSorter responseSorterClassDateTime = new ResponseSorter();
-                var sorterResultDate = responseSorterClassBenefits.HtmlConverter(responseContent, dataTimeClassname).ToArray();
-
+                var sorterResultDate = responseSorterClassBenefits.HtmlConverter(responseContent,
+                    JsonReader.GetValues().DataTimeClassname).ToArray();
+                
                 ResponseSorter responseSorterAuthorsClass = new ResponseSorter();
-                var sorterResultAuthor = responseSorterClassBenefits.HtmlConverter(responseContent, authorsClassname).ToArray();
+                var sorterResultAuthor = responseSorterClassBenefits.HtmlConverter(responseContent,
+                    JsonReader.GetValues().AuthorsClassname).ToArray();
+                
+                ResponseSorter responseSorterRankingProp = new ResponseSorter();
+                var sorterResultRanking = responseSorterRankingProp.HtmlConverter(responseContent,
+                    JsonReader.GetValues().RankingStarsItemPropName).ToArray();
 
                 for (int i = 0; i < sorterResultDate.Length; i++)
                 {
-                  ImportInformationToGoogleDocs.PushToGoogleSheets(sorterResultBenefits[i], sorterResultDate[i], sorterResultAuthor[i]);
+                  ImportInformationToGoogleDocs.PushToGoogleSheets(
+                      sorterResultBenefits[i], 
+                      sorterResultDate[i],
+                      sorterResultAuthor[i],
+                      sorterResultRanking[i]);
                 }
-
                 return null;
             }
         }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AutoParser.Models
+﻿namespace AutoParser.Models
 {
     public class GoogleSheetSettingsModel
     {
@@ -12,5 +6,12 @@ namespace AutoParser.Models
         public string? ApplicationName { get; set; }
         public string? SpreadsheetId { get; set; }
         public string? SheetRange { get; set; }
+        public string? WorkUrl { get; set; }
+        public string? ReviewBodyClassname { get; set; }
+        public string? DataTimeClassname { get; set; }
+        public string? AuthorsClassname { get; set; }
+        public string? RankingStarsItemPropName { get; set; }
+        public string? Selector { get; set; }
+        public string? SelectorEnd { get; set; }
     }
 }
