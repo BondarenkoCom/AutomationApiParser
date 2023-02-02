@@ -9,16 +9,9 @@ namespace AutoParser.Helpers
     {
         public List<string> HtmlConverter(string responseSort,string propName)
         {
-            //Make Html converter
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(responseSort);
 
-            //TODO Make json file for safe classes name
-            //var SelectorMake = JsonReader.GetValues().Selector + propName + JsonReader.GetValues().SelectorEnd;
-            //Console.WriteLine(SelectorMake.ToString());
-            //var HtmlElements = htmlDoc.DocumentNode.SelectNodes(SelectorMake);
-
-            //propName
             var HtmlElements = htmlDoc.DocumentNode.SelectNodes($"//div[@class='{propName}']");
 
             List<string> elements = new List<string>();
