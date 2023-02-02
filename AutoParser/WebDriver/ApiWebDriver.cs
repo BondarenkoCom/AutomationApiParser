@@ -11,7 +11,7 @@ namespace AutoParser.WebDriver
 {
     internal class ApiWebDriver : IWebDriver
     {
-        ResponseSorter _responseSorter = new ResponseSorter();
+        //ResponseSorter _responseSorter = new ResponseSorter();
 
         public async Task<string> RunDriverClient(string url)
         {
@@ -25,11 +25,30 @@ namespace AutoParser.WebDriver
 
             using (var response = await client.SendAsync(request))
             {
+                List<string> resultCombine = new List<string>();
+
                 response.EnsureSuccessStatusCode();
                 var responseContent = await response.Content.ReadAsStringAsync();
-                
-                var sortContent = _responseSorter.HtmlConverter(responseContent);
-                return sortContent;
+
+                string benefitsClassname = "review__content ui-text ui-text_size_l ui-text_type_high ui-text_responsive";
+                string dataTimeClassname = "review__date ui-text ui-text_size_m ui-text_type_high ui-text_responsive";
+                string authorsClassname = "ui-title ui-title_size_m ui-title_type_high ui-title_responsive";
+
+                ResponseSorter responseSorterClassBenefits = new ResponseSorter();
+                var sorterResultBenefits = responseSorterClassBenefits.HtmlConverter(responseContent, benefitsClassname).ToArray();
+
+                ResponseSorter responseSorterClassDateTime = new ResponseSorter();
+                var sorterResultDate = responseSorterClassBenefits.HtmlConverter(responseContent, dataTimeClassname).ToArray();
+
+                ResponseSorter responseSorterAuthorsClass = new ResponseSorter();
+                var sorterResultAuthor = responseSorterClassBenefits.HtmlConverter(responseContent, authorsClassname).ToArray();
+
+                for (int i = 0; i < sorterResultDate.Length; i++)
+                {
+                  ImportInformationToGoogleDocs.PushToGoogleSheets(sorterResultBenefits[i], sorterResultDate[i], sorterResultAuthor[i]);
+                }
+
+                return null;
             }
         }
 
