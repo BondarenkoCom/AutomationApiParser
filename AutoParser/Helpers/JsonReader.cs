@@ -9,8 +9,7 @@ namespace AutoParser.Helpers
         {
             //var getPath = Path.Combine(Environment.CurrentDirectory, "GoogleSheetSettings.json");
             var getPath = @"C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\GoogleSheetSettings.json";
-            Console.WriteLine(getPath);
-
+            
             string json = File.ReadAllText(getPath);
             GoogleSheetSettingsModel settings = JsonConvert.DeserializeObject<GoogleSheetSettingsModel>(json);
             return settings;    

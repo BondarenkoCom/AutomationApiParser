@@ -1,7 +1,4 @@
-﻿using AutoParser.Models;
-using HtmlAgilityPack;
-using Newtonsoft.Json;
-
+﻿using HtmlAgilityPack;
 
 namespace AutoParser.Helpers
 {

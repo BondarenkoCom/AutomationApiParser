@@ -1,7 +1,6 @@
 ﻿using Google.Apis.Sheets.v4;
 using Google.Apis.Sheets.v4.Data;
 using Google.Apis.Auth.OAuth2;
-using static Google.Apis.Sheets.v4.SpreadsheetsResource.ValuesResource.UpdateRequest;
 
 namespace AutoParser.Helpers
 {
@@ -41,6 +40,7 @@ namespace AutoParser.Helpers
               request.InsertDataOption = SpreadsheetsResource.ValuesResource.AppendRequest.InsertDataOptionEnum.INSERTROWS;
               request.ValueInputOption = SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.RAW;
               request.Execute();
+              Console.WriteLine("send to Google Sheets");  
             }
             //TODO make try catch error catcher
             return null;
