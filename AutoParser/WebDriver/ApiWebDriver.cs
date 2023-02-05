@@ -1,5 +1,6 @@
 ﻿using AutoParser.Helpers;
 using AutoParser.Interfaces;
+using System.Net;
 
 namespace AutoParser.WebDriver
 {
@@ -53,6 +54,21 @@ namespace AutoParser.WebDriver
         public void StatusTestCode()
         {
             throw new NotImplementedException();
+        }
+
+        public void ListenGoogleSheets()
+        {
+            HttpListener httpListener = new HttpListener();
+            httpListener.Prefixes.Add("http://localhost:8080/");
+            httpListener.Start();
+
+            Console.WriteLine("Listening...");
+
+            HttpListenerContext context = httpListener.GetContext();
+            HttpListenerResponse response = context.Response;
+
+            Console.WriteLine(response);
+            httpListener.Stop();
         }
     }
 }
