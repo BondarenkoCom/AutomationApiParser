@@ -1,0 +1,10 @@
+﻿{
+  "PathToKey": "C:\\Users\\Honor\\source\\repos\\AutomationApiParser\\AutoParser\\keys\\farmaceptical-reviews.json",
+  "ApplicationName": "AutoParser",
+  "SpreadsheetId": "15PGqRpgfTNypy2GYpPCdWhfZdLRYqK6ug-fhNgtLiCA",
+  "SheetRange": "A1",
+  "RankingStarsItemPropName": "rating",
+  "Selector": "$//div[@class=\"",
+  "SelectorEnd": "\"]",
+  "WorkUrl": [ "https://doctu.ru/voronezh/doctors/akusher" ]
+}

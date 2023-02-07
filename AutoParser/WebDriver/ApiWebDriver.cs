@@ -8,6 +8,9 @@ namespace AutoParser.WebDriver
     {
         public async Task<string> RunDriverClient(string url)
         {
+            var uri = new Uri(url);
+            var host = uri.Host;
+            Console.WriteLine($"{host} - this site name");
 
             var client = new HttpClient();
             var request = new HttpRequestMessage
@@ -18,34 +21,55 @@ namespace AutoParser.WebDriver
 
             using (var response = await client.SendAsync(request))
             {
-                List<string> resultCombine = new List<string>();
+                //Make Switch for different sites
 
-                response.EnsureSuccessStatusCode();
-                var responseContent = await response.Content.ReadAsStringAsync();
-                
-                ResponseSorter responseSorterClassBenefits = new ResponseSorter();
-                var sorterResultBenefits = responseSorterClassBenefits.HtmlConverter(responseContent,
-                    JsonReader.GetValues().ReviewBodyClassname).ToArray();
-                
-                ResponseSorter responseSorterClassDateTime = new ResponseSorter();
-                var sorterResultDate = responseSorterClassBenefits.HtmlConverter(responseContent,
-                    JsonReader.GetValues().DataTimeClassname).ToArray();
-                
-                ResponseSorter responseSorterAuthorsClass = new ResponseSorter();
-                var sorterResultAuthor = responseSorterClassBenefits.HtmlConverter(responseContent,
-                    JsonReader.GetValues().AuthorsClassname).ToArray();
-                
-                ResponseSorter responseSorterRankingProp = new ResponseSorter();
-                var sorterResultRanking = responseSorterRankingProp.HtmlConverter(responseContent,
-                    JsonReader.GetValues().RankingStarsItemPropName).ToArray();
-
-                for (int i = 0; i < sorterResultDate.Length; i++)
+                switch (host)
                 {
-                  ImportInformationToGoogleDocs.PushToGoogleSheets(
-                      sorterResultBenefits[i], 
-                      sorterResultDate[i],
-                      sorterResultAuthor[i],
-                      sorterResultRanking[i]);
+                     case "uteka.ru":
+                     response.EnsureSuccessStatusCode();
+                     var responseContent = await response.Content.ReadAsStringAsync();
+                     
+                     ResponseSorter responseSorterClassBenefits = new ResponseSorter();
+                     var sorterResultBenefits = responseSorterClassBenefits.HtmlConverter(responseContent,
+                         JsonReader.GetValues().ReviewBodyClassname).ToArray();
+                     
+                     ResponseSorter responseSorterClassDateTime = new ResponseSorter();
+                     var sorterResultDate = responseSorterClassDateTime.HtmlConverter(responseContent,
+                         JsonReader.GetValues().DataTimeClassname).ToArray();
+                     
+                     ResponseSorter responseSorterAuthorsClass = new ResponseSorter();
+                     var sorterResultAuthor = responseSorterAuthorsClass.HtmlConverter(responseContent,
+                         JsonReader.GetValues().AuthorsClassname).ToArray();
+                     
+                     ResponseSorter responseSorterRankingProp = new ResponseSorter();
+                     var sorterResultRanking = responseSorterRankingProp.HtmlConverter(responseContent,
+                         JsonReader.GetValues().RankingStarsItemPropName).ToArray();
+                     
+                     for (int i = 0; i < 900; i++)
+                     {
+                         Console.WriteLine($"{i} Run Sender To google sheets");
+                     
+                         ImportInformationToGoogleDocs.PushToGoogleSheets(
+                           sorterResultRanking[i],
+                           sorterResultBenefits[i],
+                           sorterResultDate[i],
+                           sorterResultAuthor[i]);
+                     }
+                        break;
+                    case "doctu.ru":
+                        response.EnsureSuccessStatusCode();
+                        var responseContentDocTu = await response.Content.ReadAsStringAsync();
+
+                        ResponseSorter responseSorterRankingDoctu = new ResponseSorter();
+                        var sorterResultRankingDocTu = responseSorterRankingDoctu.HtmlConverter(responseContentDocTu,
+                            JsonReader.GetValues().RankingStarsItemPropName).ToArray();
+
+                        for (int i = 0; i < 900; i++)
+                        {
+                            Console.WriteLine($"{i} Run Sender To google sheets");
+                            ImportInformationToGoogleDocs.PushToGoogleSheets( sorterResultRankingDocTu[i]);
+                        }
+                        break;
                 }
                 return null;
             }
@@ -69,6 +93,16 @@ namespace AutoParser.WebDriver
 
             Console.WriteLine(response);
             httpListener.Stop();
+        }
+
+        public string CheckWebSiteInformation(string url)
+        {
+            //TODO 1 make return title
+            //TODO 2 make checker "What the site?" for choose json file with data for correct parsing
+
+            var uri = new Uri(url);
+            var host = uri.Host;
+            return host;
         }
     }
 }
