@@ -9,16 +9,16 @@
   "RankingStarsItemPropName": "review__rating",
   "Selector": "$//div[@class=\"",
   "SelectorEnd": "\"]",
-  "WorkUrl": {
-    "Url0": "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/ocillokokcinum/reviews",
-    "Url1": "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/ocillokokcinum/reviews/?page=1",
-    "Url3": "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/ocillokokcinum/reviews/?page=2",
-    "Url4": "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/gomeovoks/reviews/",
-    "Url5": "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/gomeovoks/reviews//?page=1",
-    "Url6": "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/gomeovoks/reviews//?page=2",
-    "Url8": "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/dantinorm-bebi/reviews/",
-    "Url9": "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/dantinorm-bebi/reviews/?page=1",
-    "Url10": "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/dantinorm-bebi/reviews/?page=2",
-    "Url11": "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/aflubin/reviews/"
-  }
+  "WorkUrl": [
+    "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/ocillokokcinum/reviews",
+    "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/ocillokokcinum/reviews/?page=1",
+    "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/ocillokokcinum/reviews/?page=2",
+    "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/gomeovoks/reviews/",
+    "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/gomeovoks/reviews//?page=1",
+    "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/gomeovoks/reviews//?page=2",
+    "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/dantinorm-bebi/reviews/",
+    "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/dantinorm-bebi/reviews/?page=1",
+    "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/dantinorm-bebi/reviews/?page=2",
+    "https://uteka.ru/lekarstvennye-sredstva/gomeopatiya/aflubin/reviews/"
+  ]
 }
