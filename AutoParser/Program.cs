@@ -1,5 +1,4 @@
 ﻿using AutoParser.Helpers;
-using AutoParser.Models;
 using AutoParser.WebDriver;
 
 Console.WriteLine("Start parsing");

@@ -6,6 +6,5 @@ namespace AutoParser.Interfaces
         Task<string> RunDriverClient(string url);
         void StatusTestCode();
         void ListenGoogleSheets();
-        string CheckWebSiteInformation(string url);
     }
 }

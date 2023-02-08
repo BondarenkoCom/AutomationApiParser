@@ -106,15 +106,5 @@ namespace AutoParser.WebDriver
             Console.WriteLine(response);
             httpListener.Stop();
         }
-
-        public string CheckWebSiteInformation(string url)
-        {
-            //TODO 1 make return title
-            //TODO 2 make checker "What the site?" for choose json file with data for correct parsing
-
-            var uri = new Uri(url);
-            var host = uri.Host;
-            return host;
-        }
     }
 }
