@@ -44,30 +44,42 @@ namespace AutoParser.WebDriver
                      ResponseSorter responseSorterRankingProp = new ResponseSorter();
                      var sorterResultRanking = responseSorterRankingProp.HtmlConverter(responseContent,
                          JsonReader.GetValues().RankingStarsItemPropName).ToArray();
-                     
-                     for (int i = 0; i < 900; i++)
-                     {
-                         Console.WriteLine($"{i} Run Sender To google sheets");
-                     
-                         ImportInformationToGoogleDocs.PushToGoogleSheets(
-                           sorterResultRanking[i],
-                           sorterResultBenefits[i],
-                           sorterResultDate[i],
-                           sorterResultAuthor[i]);
-                     }
+
+                        int i = 0;
+                        foreach (var ranking in sorterResultRanking)
+                        {
+                            Console.WriteLine($"{i} Run Sender To google sheets");
+                            ImportInformationToGoogleDocs.PushToGoogleSheets(
+                                host,
+                                ranking,
+                                sorterResultBenefits[i],
+                                sorterResultDate[i],
+                                sorterResultAuthor[i]);
+                            i++;
+                        }
                         break;
+                    //TODO Make read from Json
                     case "doctu.ru":
                         response.EnsureSuccessStatusCode();
                         var responseContentDocTu = await response.Content.ReadAsStringAsync();
 
                         ResponseSorter responseSorterRankingDoctu = new ResponseSorter();
                         var sorterResultRankingDocTu = responseSorterRankingDoctu.HtmlConverter(responseContentDocTu,
-                            JsonReader.GetValues().RankingStarsItemPropName).ToArray();
+                            JsonReader.GetValues().RankingStarsItemPropNameDoctu).ToArray();
 
-                        for (int i = 0; i < 900; i++)
+                        ResponseSorter responseSorterdoctuNamesClass = new ResponseSorter();
+                        var sorterResultdoctuNamesClassDocTu = responseSorterdoctuNamesClass.HtmlConverter(responseContentDocTu,
+                            JsonReader.GetValues().doctuNamesClass).ToArray();
+
+
+                        int j = 0;
+                        foreach (var ranking in sorterResultRankingDocTu)
                         {
-                            Console.WriteLine($"{i} Run Sender To google sheets");
-                            ImportInformationToGoogleDocs.PushToGoogleSheets( sorterResultRankingDocTu[i]);
+                            Console.WriteLine($"{j} Run Sender To google sheets");
+                            ImportInformationToGoogleDocs.PushToGoogleSheets(host,
+                                sorterResultRankingDocTu[j],
+                                sorterResultdoctuNamesClassDocTu[j]);
+                            j++;
                         }
                         break;
                 }

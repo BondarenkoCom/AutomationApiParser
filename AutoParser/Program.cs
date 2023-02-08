@@ -1,4 +1,5 @@
 ﻿using AutoParser.Helpers;
+using AutoParser.Models;
 using AutoParser.WebDriver;
 
 Console.WriteLine("Start parsing");
@@ -12,7 +13,7 @@ foreach (var url in urls)
 {
     Console.WriteLine("Run client");
     _apiWebDriver.RunDriverClient(url);
-    
+
     Console.WriteLine(url);
 }
 

@@ -8,7 +8,7 @@ namespace AutoParser.Helpers
     public static class ImportInformationToGoogleDocs
     {
         private static SheetsService sheetsService;
-        public static string PushToGoogleSheets(string ranking, string reviewBody = null, string dataTime = null, string author = null)
+        public static string PushToGoogleSheets(string host= null,string ranking= null, string reviewBody = null, string dataTime = null, string author = null)
         {
             if (sheetsService == null)
             {
@@ -23,7 +23,7 @@ namespace AutoParser.Helpers
 
             var values = new List<IList<object>>
             {
-                new List<object> { ranking, dataTime, reviewBody, author, Environment.UserName },
+                new List<object> { host, ranking, dataTime, reviewBody, author, Environment.UserName },
             };
 
             try
@@ -42,9 +42,9 @@ namespace AutoParser.Helpers
                     request.InsertDataOption = SpreadsheetsResource.ValuesResource.AppendRequest.InsertDataOptionEnum.INSERTROWS;
                     request.ValueInputOption = SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.RAW;
                     request.Execute();
-                    System.Threading.Thread.Sleep(TimeSpan.FromSeconds(60));
-
                     Console.WriteLine($"send to Google Sheets");
+                    System.Threading.Thread.Sleep(TimeSpan.FromSeconds(60));
+                   
                 }
             }
             catch (Exception ex)

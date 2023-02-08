@@ -6,24 +6,25 @@ namespace AutoParser.Helpers
 {
     public static class JsonReader
     {
-        
         public static GoogleSheetSettingsModel? GetValues()
-        {            
-            string[] getJson = new string[] {
-            @"C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\JsonResours\UtekaCase.json",
-            @"C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\JsonResours\DoctuCase.json",
-            };
+        {
+            //TODO Make read multiply settings both Json
+            //TODO problem, dont work  both Jsons
+            //TODO maybe use Lists?
 
+            List<string> getJson = new List<string>();
+
+            //TODO Make read non absolute path
+            getJson.Add(@"C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\JsonResours\UtekaCase.json");
+            
             foreach (var item in getJson)
             {
                 string json = File.ReadAllText(item);
 
-                Console.WriteLine(json);
+                //Console.WriteLine(json);
 
                 GoogleSheetSettingsModel settings = JsonConvert.DeserializeObject<GoogleSheetSettingsModel>(json);
-
                 return settings;
-                //TODO Make read multiply settings both Json
             }
             return null;
         }

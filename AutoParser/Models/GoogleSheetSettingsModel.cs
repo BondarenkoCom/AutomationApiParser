@@ -10,6 +10,8 @@
         public string? DataTimeClassname { get; set; }
         public string? AuthorsClassname { get; set; }
         public string? RankingStarsItemPropName { get; set; }
+        public string? RankingStarsItemPropNameDoctu { get; set; }
+        public string? doctuNamesClass { get; set; }
         public string? Selector { get; set; }
         public string? SelectorEnd { get; set; }
         public string[] WorkUrl { get; set; }
