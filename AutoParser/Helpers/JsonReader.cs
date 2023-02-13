@@ -7,20 +7,14 @@ namespace AutoParser.Helpers
     {
         public static GoogleSheetSettingsModel? GetValues()
         {
-            
-            List<string> getJson = new List<string>();
 
-            //TODO Make read non absolute path
-            getJson.Add(@"C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\JsonResours\UtekaCase.json");
-            
-            foreach (var item in getJson)
-            {
-                string json = File.ReadAllText(item);
+            string jsonFilePath = @"C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\JsonResours\UtekaCase.json";
 
-                GoogleSheetSettingsModel settings = JsonConvert.DeserializeObject<GoogleSheetSettingsModel>(json);
-                return settings;
-            }
-            return null;
+            if (!File.Exists(jsonFilePath))
+                return null;
+
+            string json = File.ReadAllText(jsonFilePath);
+            return JsonConvert.DeserializeObject<GoogleSheetSettingsModel>(json);
         }
     }
 }

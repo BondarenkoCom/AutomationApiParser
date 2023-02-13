@@ -1,14 +1,21 @@
 ﻿using Google.Apis.Sheets.v4;
 using Google.Apis.Sheets.v4.Data;
 using Google.Apis.Auth.OAuth2;
+using AutoParser.WebDriver;
 
 namespace AutoParser.Helpers
 {
-    public static class ImportInformationToGoogleDocs
+    public class ImportInformationToGoogleDocs
     {
         private static SheetsService sheetsService;
-        public static string PushToGoogleSheets(string host= null,string ranking= null, string reviewBody = null, string dataTime = null, string author = null)
+        private static int requestCounter = 0;
+
+        public static string PushToGoogleSheets(string ranking = null, string host = null, string reviewBody = null, string dataTime = null, string author = null, string RatingRange = null)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"RatingRange from ImportInformationToGoogleDocs PushToGoogleSheets method - {RatingRange}");
+            Console.ResetColor();
+
             if (sheetsService == null)
             {
                 string pathToKey = JsonReader.GetValues().PathToKey;
@@ -22,7 +29,7 @@ namespace AutoParser.Helpers
 
             var values = new List<IList<object>>
             {
-                new List<object> { host, ranking, dataTime, reviewBody, author, Environment.UserName },
+                new List<object> { ranking, host , dataTime, reviewBody, author, Environment.UserName },
             };
 
             try
@@ -35,28 +42,31 @@ namespace AutoParser.Helpers
                     };
 
                     var spreadsheetId = JsonReader.GetValues().SpreadsheetId;
-                    var range = JsonReader.GetValues().SheetRange;
+                    var range = RatingRange;
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"range for  sheet - {range} This Doctor rank - {ranking}");
+                    Console.ResetColor();
 
-                    var request = sheetsService.Spreadsheets.Values.Append(requestBody, spreadsheetId, range);
-                    request.InsertDataOption = SpreadsheetsResource.ValuesResource.AppendRequest.InsertDataOptionEnum.INSERTROWS;
-                    request.ValueInputOption = SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.RAW;
+                    var request = sheetsService.Spreadsheets.Values.Update(requestBody, spreadsheetId, range);
+                    request.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
                     request.Execute();
                     Console.WriteLine($"send to Google Sheets");
-                    System.Threading.Thread.Sleep(TimeSpan.FromSeconds(60));
-                   
+
+                    requestCounter++;
+
+                    if (requestCounter == 30)
+                    {
+                        Thread.Sleep(TimeSpan.FromSeconds(60));
+                        requestCounter = 0;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error while sending data to Google Sheets: {ex.Message}");
                 return ex.Message;
-            }   
+            }
             return null;
-        }
-
-        public static string GetDataFromGoogleSheets()
-        {
-
         }
     }
 }

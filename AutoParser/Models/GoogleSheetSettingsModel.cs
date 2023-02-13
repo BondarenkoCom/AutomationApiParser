@@ -5,6 +5,7 @@
         public string? PathToKey { get; set; }
         public string? ApplicationName { get; set; }
         public string? SpreadsheetId { get; set; }
+        public string? SpreadsheetIdForSecondTable { get; set; }
         public string? SheetRange { get; set; }
         public string? ReviewBodyClassname { get; set; }
         public string? DataTimeClassname { get; set; }

@@ -6,11 +6,12 @@ namespace AutoParser.WebDriver
 {
     internal class ApiWebDriver : IWebDriver
     {
-        public async Task<string> RunDriverClient(string url)
+        public async Task<string> RunDriverClient(string url, string ratingRange)
         {
             var uri = new Uri(url);
             var host = uri.Host;
             Console.WriteLine($"{host} - this site name");
+            Console.WriteLine($"ratingRange from ApiWebDriver class - {ratingRange}");
 
             var client = new HttpClient();
             var request = new HttpRequestMessage
@@ -21,63 +22,39 @@ namespace AutoParser.WebDriver
 
             using (var response = await client.SendAsync(request))
             {
-                //Make Switch for different sites
-
                 switch (host)
                 {
-                     case "uteka.ru":
-                     response.EnsureSuccessStatusCode();
-                     var responseContent = await response.Content.ReadAsStringAsync();
-                     
-                     ResponseSorter responseSorterClassBenefits = new ResponseSorter();
-                     var sorterResultBenefits = responseSorterClassBenefits.HtmlConverter(responseContent,
-                         JsonReader.GetValues().ReviewBodyClassname).ToArray();
-                     
-                     ResponseSorter responseSorterClassDateTime = new ResponseSorter();
-                     var sorterResultDate = responseSorterClassDateTime.HtmlConverter(responseContent,
-                         JsonReader.GetValues().DataTimeClassname).ToArray();
-                     
-                     ResponseSorter responseSorterAuthorsClass = new ResponseSorter();
-                     var sorterResultAuthor = responseSorterAuthorsClass.HtmlConverter(responseContent,
-                         JsonReader.GetValues().AuthorsClassname).ToArray();
-                     
-                     ResponseSorter responseSorterRankingProp = new ResponseSorter();
-                     var sorterResultRanking = responseSorterRankingProp.HtmlConverter(responseContent,
-                         JsonReader.GetValues().RankingStarsItemPropName).ToArray();
-
-                        int i = 0;
-                        foreach (var ranking in sorterResultRanking)
-                        {
-                            Console.WriteLine($"{i} Run Sender To google sheets");
-                            ImportInformationToGoogleDocs.PushToGoogleSheets(
-                                host,
-                                ranking,
-                                sorterResultBenefits[i],
-                                sorterResultDate[i],
-                                sorterResultAuthor[i]);
-                            i++;
-                        }
-                        break;
-                    //TODO Make read from Json
                     case "doctu.ru":
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"ratingRange from case doctu switch - {ratingRange}");
+                        Console.ResetColor();
+
                         response.EnsureSuccessStatusCode();
                         var responseContentDocTu = await response.Content.ReadAsStringAsync();
-
-                        ResponseSorter responseSorterRankingDoctu = new ResponseSorter();
+                        Console.WriteLine($"Doctu case - {response}");
+                        var responseSorterRankingDoctu = new ResponseSorter();
                         var sorterResultRankingDocTu = responseSorterRankingDoctu.HtmlConverter(responseContentDocTu,
-                            JsonReader.GetValues().RankingStarsItemPropNameDoctu).ToArray();
+                            JsonReader.GetValues().RankingStarsItemPropNameDoctu);
 
-                        ResponseSorter responseSorterdoctuNamesClass = new ResponseSorter();
-                        var sorterResultdoctuNamesClassDocTu = responseSorterdoctuNamesClass.HtmlConverter(responseContentDocTu,
-                            JsonReader.GetValues().doctuNamesClass).ToArray();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"this sorterResultRankingDocTu 1- {sorterResultRankingDocTu}");
+                        Console.ResetColor();
 
                         int j = 0;
                         foreach (var ranking in sorterResultRankingDocTu)
                         {
-                            Console.WriteLine($"{j} Run Sender To google sheets");
-                            ImportInformationToGoogleDocs.PushToGoogleSheets(host,
-                                sorterResultRankingDocTu[j],
-                                sorterResultdoctuNamesClassDocTu[j]);
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine($"ratingRange from foreach Sender - {ratingRange}");
+                            Console.ResetColor();
+
+                            Console.WriteLine($"{j} Run Sender To Google Sheets");
+                            ImportInformationToGoogleDocs.PushToGoogleSheets(
+                                sorterResultRankingDocTu,
+                                null,
+                                null,
+                                null,
+                                null,
+                                ratingRange);
                             j++;
                         }
                         break;
@@ -89,6 +66,7 @@ namespace AutoParser.WebDriver
 
         public void StatusTestCode()
         {
+            //TODO Check code status and return string status code
             throw new NotImplementedException();
         }
 
