@@ -53,5 +53,10 @@ namespace AutoParser.Helpers
             }   
             return null;
         }
+
+        public static string GetDataFromGoogleSheets()
+        {
+
+        }
     }
 }

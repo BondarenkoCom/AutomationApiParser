@@ -11,7 +11,7 @@ List<string> urls = JsonReader.GetValues().WorkUrl.ToList();
 foreach (var url in urls)
 {
     Console.WriteLine("Run client");
-    _apiWebDriver.RunDriverClient(url);
+    //_apiWebDriver.RunDriverClient(url);
 
     Console.WriteLine(url);
 }

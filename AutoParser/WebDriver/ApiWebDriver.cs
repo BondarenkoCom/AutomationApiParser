@@ -71,7 +71,6 @@ namespace AutoParser.WebDriver
                         var sorterResultdoctuNamesClassDocTu = responseSorterdoctuNamesClass.HtmlConverter(responseContentDocTu,
                             JsonReader.GetValues().doctuNamesClass).ToArray();
 
-
                         int j = 0;
                         foreach (var ranking in sorterResultRankingDocTu)
                         {
@@ -86,6 +85,7 @@ namespace AutoParser.WebDriver
                 return null;
             }
         }
+
 
         public void StatusTestCode()
         {

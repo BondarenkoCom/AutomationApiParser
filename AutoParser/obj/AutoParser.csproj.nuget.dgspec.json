@@ -22,9 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://buildsoft04:81/guestAuth/app/nuget/feed/NugetServer_id/TaxcomCustomNugetServer/v3/index.json": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://gitlab.taxcom.ru/api/v4/projects/680/packages/nuget/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {

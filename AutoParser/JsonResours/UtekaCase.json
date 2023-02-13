@@ -11,6 +11,9 @@
   "RankingStarsItemPropName": "review__rating",
   "Selector": "$//div[@class=\"",
   "SelectorEnd": "\"]",
+  "WebSites": [
+
+  ],
   "WorkUrl": [
     "https://doctu.ru/voronezh/doctors",
     "https://doctu.ru/voronezh/doctors/akusher",
