@@ -15,22 +15,45 @@ namespace AutoParser.Helpers
         {
             sheetsService = sheetsService ?? InitializeSheetsService();
 
+            //TODO make count <= 100 check all columns
             for (int count = 0, rangeCount = 2; count <= 100; count++, rangeCount++)
             {
                 try
                 {
                     var spreadsheetId = JsonReader.GetValues().SpreadsheetId;
+
+                    //TODO make read from JSON UrlRange,RatingRange
                     var UrlRange = $"C{rangeCount}";
                     var RatingRange = $"D{rangeCount}";
-                    var request = sheetsService.Spreadsheets.Values.Get(spreadsheetId, UrlRange);
-                    var response = request.Execute();
+                    //TODO make loop next char [E,F,G,H,I,J,K,l,M,N,O,P] 
+                    var NextRange = $"E{rangeCount}";
 
-                    if (response.Values != null)
+                    var request_1_row_urls = sheetsService.Spreadsheets.Values.Get(spreadsheetId, UrlRange);
+                    var request_2_row = sheetsService.Spreadsheets.Values.Get(spreadsheetId, RatingRange);
+
+                    var responseUrl = request_1_row_urls.Execute();
+                    var responseRow = request_2_row.Execute();
+
+                   if (responseUrl.Values != null && responseRow.Values == null)
                     {
-                        foreach (var item in response.Values)
+                        foreach (var item in responseUrl.Values)
                         {
                             var stringUri = item[0].ToString();
                             await _apiWebDriver.RunDriverClient(stringUri, RatingRange);
+                        }
+                    }
+                    else if (responseUrl.Values != null && responseRow.Values != null)
+                    {
+                        foreach (var item in responseUrl.Values)
+                        {
+                            var stringUri = item[0].ToString();
+                            //if (stringUri.Contains("Check JSON settings for url "))
+                            //{
+                            //
+                            //}
+
+                            Console.WriteLine($"is not null - {stringUri}");
+                            await _apiWebDriver.RunDriverClient(stringUri, NextRange);
                         }
                     }
                     else
@@ -38,16 +61,25 @@ namespace AutoParser.Helpers
                         Console.WriteLine("Row is empty");
                     }
 
-                    if (count == 30)
+                    if (count == 20)
                     {
+                        Console.WriteLine("Update counter and 60 second hold for API");
                         await Task.Delay(TimeSpan.FromSeconds(60));
                         count = 0;
-                        Console.WriteLine("Update counter and 60 second hold for API");
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Error while sending/receiving data to Google Sheets: {ex.Message}");
+                    var CatchRatingRange = $"D{rangeCount}";
+                    Console.WriteLine($"Error while sending/receiving data to Google Sheets: {ex.Message}, {CatchRatingRange}");
+                    //await _apiWebDriver.RunDriverClient(null ,ex.Message);
+                    ImportInformationToGoogleDocs.PushToGoogleSheets(
+                           ex.Message,
+                           null,
+                           null,
+                           null,
+                           null,
+                           CatchRatingRange);
                     continue;
                 }
             }

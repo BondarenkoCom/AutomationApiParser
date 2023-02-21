@@ -15,7 +15,6 @@
         public string? doctuNamesClass { get; set; }
         public string? Selector { get; set; }
         public string? SelectorEnd { get; set; }
-        public string[]? WorkUrl { get; set; }
         public string[]? WebSites { get; set; }
     }
 }

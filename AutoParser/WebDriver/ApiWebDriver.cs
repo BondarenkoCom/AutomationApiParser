@@ -10,8 +10,6 @@ namespace AutoParser.WebDriver
         {
             var uri = new Uri(url);
             var host = uri.Host;
-            Console.WriteLine($"{host} - this site name");
-            Console.WriteLine($"ratingRange from ApiWebDriver class - {ratingRange}");
 
             var client = new HttpClient();
             var request = new HttpRequestMessage
@@ -25,9 +23,6 @@ namespace AutoParser.WebDriver
                 switch (host)
                 {
                     case "doctu.ru":
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine($"ratingRange from case doctu switch - {ratingRange}");
-                        Console.ResetColor();
 
                         response.EnsureSuccessStatusCode();
                         var responseContentDocTu = await response.Content.ReadAsStringAsync();
@@ -36,17 +31,9 @@ namespace AutoParser.WebDriver
                         var sorterResultRankingDocTu = responseSorterRankingDoctu.HtmlConverter(responseContentDocTu,
                             JsonReader.GetValues().RankingStarsItemPropNameDoctu);
 
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine($"this sorterResultRankingDocTu 1- {sorterResultRankingDocTu}");
-                        Console.ResetColor();
-
                         int j = 0;
                         foreach (var ranking in sorterResultRankingDocTu)
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine($"ratingRange from foreach Sender - {ratingRange}");
-                            Console.ResetColor();
-
                             Console.WriteLine($"{j} Run Sender To Google Sheets");
                             ImportInformationToGoogleDocs.PushToGoogleSheets(
                                 sorterResultRankingDocTu,
@@ -57,6 +44,17 @@ namespace AutoParser.WebDriver
                                 ratingRange);
                             j++;
                         }
+                        break;
+                    default:
+                        string errorMes = $"Check JSON settings for url - {url}";
+                        Console.WriteLine(errorMes);
+                        ImportInformationToGoogleDocs.PushToGoogleSheets(
+                            errorMes,
+                            null,
+                            null,
+                            null,
+                            null,
+                            ratingRange);
                         break;
                 }
                 return null;

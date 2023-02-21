@@ -12,9 +12,6 @@ namespace AutoParser.Helpers
 
         public static string PushToGoogleSheets(string ranking = null, string host = null, string reviewBody = null, string dataTime = null, string author = null, string RatingRange = null)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"RatingRange from ImportInformationToGoogleDocs PushToGoogleSheets method - {RatingRange}");
-            Console.ResetColor();
 
             if (sheetsService == null)
             {
@@ -43,20 +40,17 @@ namespace AutoParser.Helpers
 
                     var spreadsheetId = JsonReader.GetValues().SpreadsheetId;
                     var range = RatingRange;
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"range for  sheet - {range} This Doctor rank - {ranking}");
-                    Console.ResetColor();
 
+                    //TODO Make reaad in new collumn if is exist old
                     var request = sheetsService.Spreadsheets.Values.Update(requestBody, spreadsheetId, range);
                     request.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
                     request.Execute();
-                    Console.WriteLine($"send to Google Sheets");
 
                     requestCounter++;
 
                     if (requestCounter == 30)
                     {
-                        Thread.Sleep(TimeSpan.FromSeconds(60));
+                        Thread.Sleep(TimeSpan.FromSeconds(10));
                         requestCounter = 0;
                     }
                 }
