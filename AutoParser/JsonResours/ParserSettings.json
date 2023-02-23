@@ -10,9 +10,13 @@
   "doctuNamesClass": "speciality",
   "RankingStarsItemPropNameDoctu": "rating",
   "RankingStarsItemPropName": "review__rating",
+  "RankingStarsItemPropNameAllDoc": "rating__value",
+  "RankingStarsItemPropNameCallmedic": "rating_label",
   "Selector": "$//div[@class=\"",
   "SelectorEnd": "\"]",
   "WebSites": [
+    "doctu.ru",
+    "all-doc.ru"
 
   ]
 }

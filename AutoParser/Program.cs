@@ -6,4 +6,3 @@ var readGoogleSheets = new ReadGoogleSheets();
 await readGoogleSheets.GetDataFromGoogleSheets();
 
 Console.ReadLine();
-    

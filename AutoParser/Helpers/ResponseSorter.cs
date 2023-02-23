@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using System.Globalization;
 
 namespace AutoParser.Helpers
 {
@@ -9,14 +10,33 @@ namespace AutoParser.Helpers
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(responseSort);
 
-            var htmlElement = htmlDoc.DocumentNode.SelectSingleNode($"//div[@class='{propName}']");
+            try
+            {
+              var htmlElement = htmlDoc.DocumentNode.SelectSingleNode($"//div[@class='{propName}']");
+              return htmlElement?.InnerText ?? $"Element {propName} is null (Empty)";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
 
-            return htmlElement?.InnerText ?? $"Element {propName} is null (Empty)";
+        public string HtmlConverterForAllDoc(string responseSort, string propName)
+        {
+            var htmlDoc = new HtmlDocument();
+            var figure = new FigureOutRating();
+            htmlDoc.LoadHtml(responseSort);
+
+            var htmlElement = htmlDoc.DocumentNode.SelectSingleNode($"//div[@class='{propName}']");
+            string styleAttribute = htmlElement.Attributes["style"].Value;
+
+            var rankResult = figure.GetStarsRating(styleAttribute);
+
+            return rankResult.ToString() ?? $"Element {propName} is null (Empty)";
         }
 
         public List<string> HtmlConverter(string responseSort)
         {
-
             //TODO 1 make return title
             //TODO 2 make checker "What the site?" for choose json file with data for correct parsing
             var htmlDoc = new HtmlDocument();

@@ -47,11 +47,7 @@ namespace AutoParser.Helpers
                         foreach (var item in responseUrl.Values)
                         {
                             var stringUri = item[0].ToString();
-                            //if (stringUri.Contains("Check JSON settings for url "))
-                            //{
-                            //
-                            //}
-
+                            
                             Console.WriteLine($"is not null - {stringUri}");
                             await _apiWebDriver.RunDriverClient(stringUri, NextRange);
                         }
@@ -72,7 +68,6 @@ namespace AutoParser.Helpers
                 {
                     var CatchRatingRange = $"D{rangeCount}";
                     Console.WriteLine($"Error while sending/receiving data to Google Sheets: {ex.Message}, {CatchRatingRange}");
-                    //await _apiWebDriver.RunDriverClient(null ,ex.Message);
                     ImportInformationToGoogleDocs.PushToGoogleSheets(
                            ex.Message,
                            null,
