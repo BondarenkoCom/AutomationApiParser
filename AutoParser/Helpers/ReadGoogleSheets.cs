@@ -9,7 +9,8 @@ namespace AutoParser.Helpers
     public class ReadGoogleSheets
     {
         private static SheetsService sheetsService;
-        private readonly ApiWebDriver _apiWebDriver = new ApiWebDriver();
+        //private readonly ApiWebDriver _apiWebDriver = new ApiWebDriver();
+        private readonly NewApiWebDriver _apiWebDriver = new NewApiWebDriver();
 
         public async Task<string> GetDataFromGoogleSheets()
         {
