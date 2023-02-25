@@ -68,10 +68,12 @@ namespace AutoParser.WebDriver
                         break;
                     case "spb.callmedic.ru":
                         Console.WriteLine("callmedic is work");
+
                         response.EnsureSuccessStatusCode();
                         var responseContentCallMedic = await response.Content.ReadAsStringAsync();
                         //TODO make hack for captcha
                         //TODO Find error
+
                         var responseSorterRankingCallMedic = new ResponseSorter();
                         var sorterResultRankingCallMedic = responseSorterRankingCallMedic.HtmlConverter(responseContentCallMedic,
                             JsonReader.GetValues().RankingStarsItemPropNameCallmedic);
@@ -88,6 +90,78 @@ namespace AutoParser.WebDriver
                                 ratingRange);
                             jc++;
                         }
+                        break;
+                    case "doktorlaser.ru":
+                        Console.WriteLine($"Url laser work - {host}");
+                        response.EnsureSuccessStatusCode();
+                        var responseContentDoktorlaser = await response.Content.ReadAsStringAsync();
+
+                        var responseSorterRankingDoktorlaser = new ResponseSorter();
+                        var sorterResultRankingDoktorlaser = responseSorterRankingDoktorlaser.HtmlConverterForDoctorLaser(responseContentDoktorlaser,
+                            JsonReader.GetValues().RankingStarsItemPropNameDoktorlaser);
+
+                        int jl = 0;
+                        foreach (var ranking in sorterResultRankingDoktorlaser)
+                        {
+                            ImportInformationToGoogleDocs.PushToGoogleSheets(
+                                sorterResultRankingDoktorlaser,
+                                null,
+                                null,
+                                null,
+                                null,
+                                ratingRange);
+                            jl++;
+                        }
+                        break;
+                    case "gastromir.com":
+                        Console.WriteLine($"Gastomir is work - {host}");
+
+                        response.EnsureSuccessStatusCode();
+                        var responseContentGastomir = await response.Content.ReadAsStringAsync();
+
+                        var responseSorterRankingGastomir = new ResponseSorter();
+                        var sorterResultRankingGastomir = responseSorterRankingGastomir.HtmlConverterForGastomir(
+                            responseContentGastomir,
+                            JsonReader.GetValues().RankingStarsItemPropNameGastomir);
+
+                        int jg = 0;
+                        foreach (var ranking in sorterResultRankingGastomir)
+                        {
+                            ImportInformationToGoogleDocs.PushToGoogleSheets(
+                                sorterResultRankingGastomir,
+                                null,
+                                null,
+                                null,
+                                null,
+                                ratingRange);
+                            jg++;
+                        }
+
+                        break;
+                    case "syktyvkar.infodoctor.ru":
+                        Console.WriteLine($"Url syktyvkar.Infodoctor.ru work - {host}");
+
+                        response.EnsureSuccessStatusCode();
+                        var responseContentInfodoctor = await response.Content.ReadAsStringAsync();
+
+                        var responseSorterRankingInfodoctor = new ResponseSorter();
+                        var sorterResultRankingInfodoctor = responseSorterRankingInfodoctor.HtmlConverter(
+                            responseContentInfodoctor,
+                            JsonReader.GetValues().RankingStarsItemPropNameInfodoctor);
+
+                        int jI = 0;
+                        foreach (var ranking in sorterResultRankingInfodoctor)
+                        {
+                            ImportInformationToGoogleDocs.PushToGoogleSheets(
+                                sorterResultRankingInfodoctor,
+                                null,
+                                null,
+                                null,
+                                null,
+                                ratingRange);
+                            jI++;
+                        }
+
                         break;
                     default:
                         string errorMes = $"Check JSON settings for url - {url}";

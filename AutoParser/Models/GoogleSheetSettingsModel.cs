@@ -10,13 +10,16 @@
         public string? ReviewBodyClassname { get; set; }
         public string? DataTimeClassname { get; set; }
         public string? AuthorsClassname { get; set; }
-        public string? RankingStarsItemPropName { get; set; }
-        public string? RankingStarsItemPropNameDoctu { get; set; }
-        public string? RankingStarsItemPropNameAllDoc { get; set; }
-        public string? RankingStarsItemPropNameCallmedic { get; set; }
         public string? doctuNamesClass { get; set; }
         public string? Selector { get; set; }
         public string? SelectorEnd { get; set; }
         public string[]? WebSites { get; set; }
+        public string? RankingStarsItemPropName { get; set; }
+        public string? RankingStarsItemPropNameDoctu { get; set; }
+        public string? RankingStarsItemPropNameAllDoc { get; set; }
+        public string? RankingStarsItemPropNameCallmedic { get; set; }
+        public string? RankingStarsItemPropNameDoktorlaser { get; set; }
+        public string? RankingStarsItemPropNameGastomir { get; set; }
+        public string? RankingStarsItemPropNameInfodoctor { get; set; }
     }
 }

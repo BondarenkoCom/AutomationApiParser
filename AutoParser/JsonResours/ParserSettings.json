@@ -12,6 +12,9 @@
   "RankingStarsItemPropName": "review__rating",
   "RankingStarsItemPropNameAllDoc": "rating__value",
   "RankingStarsItemPropNameCallmedic": "rating_label",
+  "RankingStarsItemPropNameDoktorlaser": "number-reviews-all",
+  "RankingStarsItemPropNameGastomir": "count-sm",
+  "RankingStarsItemPropNameInfodoctor": "doc-rating__info-value",
   "Selector": "$//div[@class=\"",
   "SelectorEnd": "\"]",
   "WebSites": [
