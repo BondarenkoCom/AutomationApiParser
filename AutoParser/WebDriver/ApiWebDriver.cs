@@ -70,7 +70,7 @@ namespace AutoParser.WebDriver
                         Console.WriteLine("callmedic is work");
                         response.EnsureSuccessStatusCode();
                         var responseContentCallMedic = await response.Content.ReadAsStringAsync();
-
+                        //TODO make hack for captcha
                         //TODO Find error
                         var responseSorterRankingCallMedic = new ResponseSorter();
                         var sorterResultRankingCallMedic = responseSorterRankingCallMedic.HtmlConverter(responseContentCallMedic,
