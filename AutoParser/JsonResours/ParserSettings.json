@@ -15,6 +15,7 @@
   "RankingStarsItemPropNameDoktorlaser": "number-reviews-all",
   "RankingStarsItemPropNameGastomir": "count-sm",
   "RankingStarsItemPropNameInfodoctor": "doc-rating__info-value",
+  "RankingStarsItemPropNameKleos": "star-rating-svg",
   "Selector": "$//div[@class=\"",
   "SelectorEnd": "\"]",
   "WebSites": [

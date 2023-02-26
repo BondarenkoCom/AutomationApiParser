@@ -8,9 +8,14 @@ namespace AutoParser.Helpers
         {
 
             string att = HtmlAttribute;
+            //string extract = att.Replace("width:", "")
+            //    .Replace("%", "")
+            //    .Replace(";", "").Trim().ToString();
             string extract = att.Replace("width:", "")
-                .Replace("%", "")
-                .Replace(";", "").Trim().ToString();
+                   .Replace("%", "")
+                   .Replace(";", "")
+                   .Replace("px", "").Trim().ToString();
+
 
             try
             {

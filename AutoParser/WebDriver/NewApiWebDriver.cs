@@ -12,6 +12,12 @@ namespace AutoParser.WebDriver
             var uri = new Uri(url);
             var host = uri.Host;
 
+            if(host.Contains("www"))
+            {
+                host = host.Replace("www.", "");
+            }
+            Console.WriteLine($"Url - {host}");
+
             var client = new HttpClient();
             var request = new HttpRequestMessage
             {
@@ -28,7 +34,8 @@ namespace AutoParser.WebDriver
                     //{ "spb.callmedic.ru", (responseSort, propName) => new ResponseSorter().HtmlConverter(responseSort, JsonReader.GetValues().RankingStarsItemPropNameCallmedic) },
                     { "doktorlaser.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterForDoctorLaser(responseSort, JsonReader.GetValues().RankingStarsItemPropNameDoktorlaser) },
                     { "gastromir.com", (responseSort, propName) => new ResponseSorter().HtmlConverterForGastomir(responseSort, JsonReader.GetValues().RankingStarsItemPropNameGastomir) },
-                    { "syktyvkar.infodoctor.ru", (responseSort, propName) => new ResponseSorter().HtmlConverter(responseSort, JsonReader.GetValues().RankingStarsItemPropNameInfodoctor) }
+                    { "syktyvkar.infodoctor.ru", (responseSort, propName) => new ResponseSorter().HtmlConverter(responseSort, JsonReader.GetValues().RankingStarsItemPropNameInfodoctor) },
+                    { "kleos.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterForKleos(responseSort, JsonReader.GetValues().RankingStarsItemPropNameKleos)}
                 };
 
                 if (responseSorterMethods.TryGetValue(host, out var method))

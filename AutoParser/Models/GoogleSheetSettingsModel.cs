@@ -20,6 +20,7 @@
         public string? RankingStarsItemPropNameCallmedic { get; set; }
         public string? RankingStarsItemPropNameDoktorlaser { get; set; }
         public string? RankingStarsItemPropNameGastomir { get; set; }
+        public string? RankingStarsItemPropNameKleos { get; set; }
         public string? RankingStarsItemPropNameInfodoctor { get; set; }
     }
 }

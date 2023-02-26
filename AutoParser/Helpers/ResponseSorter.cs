@@ -41,7 +41,28 @@ namespace AutoParser.Helpers
                 return ex.Message;
             }
         }
-        
+
+        public string HtmlConverterForKleos(string responseSort, string propName)
+        {
+            var htmlDoc = new HtmlDocument();
+            var figure = new FigureOutRating();
+            htmlDoc.LoadHtml(responseSort);
+
+            try
+            {
+                var htmlElement = htmlDoc.DocumentNode.SelectSingleNode($"//div[@class='{propName}']");
+                string styleAttribute = htmlElement.Attributes["style"].Value;
+
+                var rankResult = figure.GetStarsRating(styleAttribute);
+
+                return rankResult.ToString() ?? $"Element {propName} is null (Empty)";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
         public string HtmlConverterForDoctorLaser(string responseSort, string propName)
         {
             var htmlDoc = new HtmlDocument();
