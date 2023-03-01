@@ -26,7 +26,7 @@ namespace AutoParser.Helpers
 
             var values = new List<IList<object>>
             {
-                new List<object> { ranking, host , dataTime, reviewBody, author, Environment.UserName },
+                new List<object> { ranking, host , dataTime, reviewBody, author },
             };
 
             try

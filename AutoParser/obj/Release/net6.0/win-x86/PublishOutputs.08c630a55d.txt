@@ -1,4 +1,7 @@
 C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\publish\win-x86\AutoParser.exe
+C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\publish\win-x86\selenium-manager\linux\selenium-manager
+C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\publish\win-x86\selenium-manager\macos\selenium-manager
+C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\publish\win-x86\selenium-manager\windows\selenium-manager.exe
 C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\publish\win-x86\AutoParser.dll
 C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\publish\win-x86\AutoParser.deps.json
 C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\publish\win-x86\AutoParser.runtimeconfig.json
@@ -231,4 +234,7 @@ C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\pu
 C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\publish\win-x86\Google.Apis.Auth.dll
 C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\publish\win-x86\Google.Apis.Core.dll
 C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\publish\win-x86\Google.Apis.Sheets.v4.dll
+C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\publish\win-x86\HtmlAgilityPack.dll
 C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\publish\win-x86\Newtonsoft.Json.dll
+C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\publish\win-x86\WebDriver.Support.dll
+C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\publish\win-x86\WebDriver.dll

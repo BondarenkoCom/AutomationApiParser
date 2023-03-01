@@ -1,5 +1,6 @@
 ﻿using AutoParser.Models;
 using Newtonsoft.Json;
+using System.Reflection;
 
 namespace AutoParser.Helpers
 {
@@ -8,14 +9,24 @@ namespace AutoParser.Helpers
         public static GoogleSheetSettingsModel? GetValues()
         {
 
-            string jsonFilePath = @"C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\JsonResours\ParserSettings.json";
+            try
+            {
 
-            if (!File.Exists(jsonFilePath))
+                string basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                string jsonFilePath = Path.Combine(basePath, "JsonResours", "ParserSettings.json");
+             
+                if (!File.Exists(jsonFilePath))
+                    return null;
+
+                string json = File.ReadAllText(jsonFilePath);
+
+                return JsonConvert.DeserializeObject<GoogleSheetSettingsModel>(json);
+            }
+            catch (Exception ex)
+            {
+                Logger.WrtieLog($"Error processing element at path {ex.ToString()}");
                 return null;
-
-            string json = File.ReadAllText(jsonFilePath);
-            
-            return JsonConvert.DeserializeObject<GoogleSheetSettingsModel>(json);
+            }
         }
     }
 }

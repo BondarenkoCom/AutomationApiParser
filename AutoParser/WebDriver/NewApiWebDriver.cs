@@ -1,7 +1,6 @@
 ﻿using AutoParser.Helpers;
 using AutoParser.Interfaces;
 using System.Net;
-using System.Collections.Generic;
 
 namespace AutoParser.WebDriver
 {

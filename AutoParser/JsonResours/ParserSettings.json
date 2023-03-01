@@ -1,5 +1,6 @@
 {
-  "PathToKey": "C:\\Users\\Honor\\source\\repos\\AutomationApiParser\\AutoParser\\keys\\farmaceptical-reviews.json",
+  "logPath": "C:\\Users\\Honor\\source\\repos\\AutomationApiParser\\AutoParser\\bin\\Release\\net6.0\\publish\\win-x64\\logs",
+  "PathToKey": "farmaceptical-reviews.json",
   "ApplicationName": "AutoParser",
   "SpreadsheetId": "15PGqRpgfTNypy2GYpPCdWhfZdLRYqK6ug-fhNgtLiCA",
   "SpreadsheetIdForSecondTable": "1CgabLcNDVextIsZ0j7vqaGI3HMjg8PcVwYBfu4_y2Ms",

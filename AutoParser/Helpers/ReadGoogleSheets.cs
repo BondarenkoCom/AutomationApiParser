@@ -2,14 +2,13 @@
 using Google.Apis.Sheets.v4.Data;
 using Google.Apis.Auth.OAuth2;
 using AutoParser.WebDriver;
-
+using System.Reflection;
 
 namespace AutoParser.Helpers
 {
     public class ReadGoogleSheets
     {
         private static SheetsService sheetsService;
-        //private readonly ApiWebDriver _apiWebDriver = new ApiWebDriver();
         private readonly NewApiWebDriver _apiWebDriver = new NewApiWebDriver();
 
         public async Task<string> GetDataFromGoogleSheets()
@@ -17,17 +16,32 @@ namespace AutoParser.Helpers
             sheetsService = sheetsService ?? InitializeSheetsService();
 
             //TODO make count <= 100 check all columns
-            for (int count = 0, rangeCount = 2; count <= 100; count++, rangeCount++)
+            for (int count = 0, rangeCount = 1; count <= 100; count++, rangeCount++)
             {
                 try
                 {
                     var spreadsheetId = JsonReader.GetValues().SpreadsheetId;
 
                     //TODO make read from JSON UrlRange,RatingRange
+
+                    //получаем урл если он не пустой пишем в следующий столбец И  следующий столбец должен содержать только одну дату
+                    //в D1  пишем дату
+
+                    DateTime today = DateTime.Today;
+                    string dateString = today.ToString("dd.MM.yyyy");
+
                     var UrlRange = $"C{rangeCount}";
-                    var RatingRange = $"D{rangeCount}";
+
                     //TODO make loop next char [E,F,G,H,I,J,K,l,M,N,O,P] 
+                    var RatingRange = $"D{rangeCount}";
                     var NextRange = $"E{rangeCount}";
+                    var RangeAfterUrl = rangeCount+2;
+                    char[] charGoogleSheets = {'A', 'B', 'C', 'D', 'F', 'G', 'H', 'I','J', 
+                                                'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+                                                 'S','T','U','V','W','X','Y'};
+
+                    int headCharGoogleSheetsCounter = 1;
+                    var RangeData = $"{charGoogleSheets[RangeAfterUrl]}{headCharGoogleSheetsCounter}";
 
                     var request_1_row_urls = sheetsService.Spreadsheets.Values.Get(spreadsheetId, UrlRange);
                     var request_2_row = sheetsService.Spreadsheets.Values.Get(spreadsheetId, RatingRange);
@@ -35,12 +49,29 @@ namespace AutoParser.Helpers
                     var responseUrl = request_1_row_urls.Execute();
                     var responseRow = request_2_row.Execute();
 
-                   if (responseUrl.Values != null && responseRow.Values == null)
+
+                    if (responseUrl.Values != null && responseRow.Values == null)
                     {
                         foreach (var item in responseUrl.Values)
                         {
                             var stringUri = item[0].ToString();
-                            await _apiWebDriver.RunDriverClient(stringUri, RatingRange);
+                            if (stringUri.Contains("URLS"))
+                            {
+                                Console.WriteLine($"I am Url row - {stringUri}");
+                                
+                                ImportInformationToGoogleDocs.PushToGoogleSheets(
+                                    dateString,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    RangeData);
+                            }
+                            else
+                            {
+                                await _apiWebDriver.RunDriverClient(stringUri, RatingRange);
+                            }
+
                         }
                     }
                     else if (responseUrl.Values != null && responseRow.Values != null)
@@ -85,7 +116,10 @@ namespace AutoParser.Helpers
 
         private SheetsService InitializeSheetsService()
         {
-            string pathToKey = JsonReader.GetValues().PathToKey;
+            string KeyName = JsonReader.GetValues().PathToKey;
+            string basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string pathToKey = Path.Combine(basePath, "keys", $"{KeyName}");
+
             var credential = GoogleCredential.FromFile(pathToKey);
             return new SheetsService(new Google.Apis.Services.BaseClientService.Initializer
             {
