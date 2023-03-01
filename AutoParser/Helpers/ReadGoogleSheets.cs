@@ -16,7 +16,6 @@ namespace AutoParser.Helpers
         {
             sheetsService = sheetsService ?? InitializeSheetsService();
 
-            //TODO make count <= 100 check all columns
             for (int count = 0, rangeCount = 1; count <= 100; count++, rangeCount++)
             {
                 try
@@ -27,7 +26,8 @@ namespace AutoParser.Helpers
 
                     var RatingRange = $"D{rangeCount}";
                     var NextRange = $"E{rangeCount}";
-                    
+                    //var NextRange = $"{(char)('E')}";
+
                     var request_1_row_urls = sheetsService.Spreadsheets.Values.Get(spreadsheetId, UrlRange);
                     var request_2_row = sheetsService.Spreadsheets.Values.Get(spreadsheetId, RatingRange);
 
@@ -45,10 +45,15 @@ namespace AutoParser.Helpers
                     }
                     else if (responseUrl.Values != null && responseRow.Values != null)
                     {
+                        
                         foreach (var item in responseUrl.Values)
                         {
+                            if (NextRange != null)
+                            {
+                                NextRange = $"F{rangeCount}";
+                            }
                             var stringUri = item[0].ToString();
-                            await _apiWebDriver.RunDriverClient(stringUri, RatingRange);
+                            await _apiWebDriver.RunDriverClient(stringUri, NextRange);
                         }
                     }
                     else
