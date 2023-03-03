@@ -17,8 +17,7 @@ namespace AutoParser.Helpers
             sheetsService = sheetsService ?? InitializeSheetsService();
 
             string date = DateTime.Today.ToString("dd.MM.yyyy");
-            //string date = "04.03.2023";
-
+            //GetNextRatingColumn use this method for change char
             for (int count = 0, rangeCount = 1; count <= 100; count++, rangeCount++)
             {
                 try
@@ -28,6 +27,11 @@ namespace AutoParser.Helpers
                     var UrlRange = $"C{rangeCount}";
                     var RatingRange = $"D{rangeCount}";
 
+                    //запрос на чтение Даты (брать из таблицы)
+
+                    //сделать запрос на все A1 до Y1
+                    //проверить сущетсвует ли новая дата из string date , если ее нету то мы свободную букву колонки и пишем туда новые данные
+ 
                     switch (date)
                     {
                         case "03.03.2023":
@@ -118,6 +122,11 @@ namespace AutoParser.Helpers
                 HttpClientInitializer = credential,
                 ApplicationName = JsonReader.GetValues().ApplicationName
             });
+        }
+
+        private static string GetNextRatingColumn(string currentColumn)
+        {
+            return ((char)(currentColumn[0] + 1)).ToString();
         }
     }
 }
