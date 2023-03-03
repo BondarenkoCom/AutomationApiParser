@@ -16,6 +16,9 @@ namespace AutoParser.Helpers
         {
             sheetsService = sheetsService ?? InitializeSheetsService();
 
+            string date = DateTime.Today.ToString("dd.MM.yyyy");
+            //string date = "04.03.2023";
+
             for (int count = 0, rangeCount = 1; count <= 100; count++, rangeCount++)
             {
                 try
@@ -23,10 +26,24 @@ namespace AutoParser.Helpers
                     var spreadsheetId = JsonReader.GetValues().SpreadsheetId;
 
                     var UrlRange = $"C{rangeCount}";
-
                     var RatingRange = $"D{rangeCount}";
-                    var NextRange = $"E{rangeCount}";
-                    //var NextRange = $"{(char)('E')}";
+
+                    switch (date)
+                    {
+                        case "03.03.2023":
+                            RatingRange = $"D{rangeCount}";
+                            break;
+                        case "04.03.2023":
+                            RatingRange = $"E{rangeCount}";
+                            break;
+                        case "05.03.2023":
+                            RatingRange = $"F{rangeCount}";
+                            break;
+                        // add more cases for other dates as needed
+                        default:
+                            Console.WriteLine("Invalid date");
+                            break;
+                    }
 
                     var request_1_row_urls = sheetsService.Spreadsheets.Values.Get(spreadsheetId, UrlRange);
                     var request_2_row = sheetsService.Spreadsheets.Values.Get(spreadsheetId, RatingRange);
@@ -34,46 +51,41 @@ namespace AutoParser.Helpers
                     var responseUrl = request_1_row_urls.Execute();
                     var responseRow = request_2_row.Execute();
 
-                    string date = DateTime.Today.ToString("dd.MM.yyyy");
-
-
-                    if (responseUrl.Values != null && responseRow.Values == null)
+                    switch (responseUrl.Values?[0][0])
                     {
-                        foreach (var item in responseUrl.Values)
-                        {
-                            if (item.Contains("URLS"))
+                        case "URLS":
+
+                            if (responseUrl.Values != null)
                             {
-                                ImportInformationToGoogleDocs.PushToGoogleSheets(
-                                date,
-                                null,
-                                null,
-                                null,
-                                null,
-                                RatingRange);
+                                if (responseRow.Values == null)
+                                {
+                                    ImportInformationToGoogleDocs.PushToGoogleSheets(date, null, null, null, null, RatingRange);
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"{RatingRange} - is Exist");
+                                }
                             }
                             else
                             {
-                               var stringUri = item[0].ToString();
-                               await _apiWebDriver.RunDriverClient(stringUri, RatingRange);
+                                Console.WriteLine("Row data is null");
+                                //ImportInformationToGoogleDocs.PushToGoogleSheets(date, null, null, null, null, NextRange);
                             }
-                        }
-                    }
-                    else if (responseUrl.Values != null && responseRow.Values != null)
-                    {
-                        
-                        foreach (var item in responseUrl.Values)
-                        {
-                            if (NextRange != null)
+                            break;
+                        default:
+                            if (responseUrl.Values != null && responseRow.Values == null)
                             {
-                                NextRange = $"F{rangeCount}";
+                                foreach (var item in responseUrl.Values)
+                                {
+                                    var stringUri = item[0].ToString();
+                                    await _apiWebDriver.RunDriverClient(stringUri, RatingRange);
+                                }
                             }
-                            var stringUri = item[0].ToString();
-                            await _apiWebDriver.RunDriverClient(stringUri, NextRange);
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Row is empty");
+                            else
+                            {
+                                Console.WriteLine("Row is empty");
+                            }
+                            break;
                     }
 
                     if (count == 20)
@@ -87,13 +99,7 @@ namespace AutoParser.Helpers
                 {
                     var CatchRatingRange = $"D{rangeCount}";
                     Console.WriteLine($"Error while sending/receiving data to Google Sheets: {ex.Message}, {CatchRatingRange}");
-                    ImportInformationToGoogleDocs.PushToGoogleSheets(
-                           ex.Message,
-                           null,
-                           null,
-                           null,
-                           null,
-                           CatchRatingRange);
+                    ImportInformationToGoogleDocs.PushToGoogleSheets(ex.Message, null, null, null, null, CatchRatingRange);
                     continue;
                 }
             }
