@@ -10,7 +10,9 @@ namespace AutoParser.Helpers
         private static SheetsService sheetsService;
         private static int requestCounter = 0;
 
-        public static string PushToGoogleSheets(string ranking = null, string host = null, string reviewBody = null, string dataTime = null, string author = null, string RatingRange = null)
+        public static string PushToGoogleSheets(
+            string ranking = null, string host = null, string reviewBody = null, 
+            string dataTime = null, string author = null, string RatingRange = null)
         {
 
             if (sheetsService == null)

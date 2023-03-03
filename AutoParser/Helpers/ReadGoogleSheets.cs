@@ -34,13 +34,28 @@ namespace AutoParser.Helpers
                     var responseUrl = request_1_row_urls.Execute();
                     var responseRow = request_2_row.Execute();
 
+                    string date = DateTime.Today.ToString("dd.MM.yyyy");
+
 
                     if (responseUrl.Values != null && responseRow.Values == null)
                     {
                         foreach (var item in responseUrl.Values)
                         {
-                            var stringUri = item[0].ToString();
-                            await _apiWebDriver.RunDriverClient(stringUri, RatingRange);
+                            if (item.Contains("URLS"))
+                            {
+                                ImportInformationToGoogleDocs.PushToGoogleSheets(
+                                date,
+                                null,
+                                null,
+                                null,
+                                null,
+                                RatingRange);
+                            }
+                            else
+                            {
+                               var stringUri = item[0].ToString();
+                               await _apiWebDriver.RunDriverClient(stringUri, RatingRange);
+                            }
                         }
                     }
                     else if (responseUrl.Values != null && responseRow.Values != null)
