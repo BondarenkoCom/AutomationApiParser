@@ -55,7 +55,7 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
         private async Task<string> ProcessColumn(IList<IList<object>> values, int column)
         {
           
-            for (int count = 0 , rangeCount = 0; count <= 100; count++)
+            for (int count = 0 , rangeCount = 0; count <= 1; count++)
             {
                
                 try
