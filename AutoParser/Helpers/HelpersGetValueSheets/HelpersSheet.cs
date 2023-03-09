@@ -65,7 +65,6 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
                     var cellValueIndex = values[0].IndexOf(cellValue) + 1; // add 1 to get the actual index
                     string rangeLetter = null;
                     rangeLetter = GetRange.GetRangeLetter(cellValueIndex);
-                    var UrlRange = $"C{rangeCount}";
                     var RatingRange = $"{rangeLetter}1";
                     Console.WriteLine($"This index range - {cellValueIndex}");
 
@@ -82,9 +81,7 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
                             $"Is range value - {rangeLetter},");
 
                         var resultsByUrls = await beginRequest.GetRangeByUrls(rangeLetter);
-                        Console.WriteLine($"ranges from Google Sheets - {resultsByUrls}");
-                        //rangeCount++;
-                        //return rangeLetter;      
+                        Console.WriteLine($"ranges from Google Sheets - {resultsByUrls}");  
                     }
                     else
                     {
@@ -92,10 +89,10 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
                         break;
                     }
 
-                    if (count == 20)
+                    if (count == 10)
                     {
                         Console.WriteLine("Update counter and 60 second hold for API");
-                        await Task.Delay(TimeSpan.FromSeconds(60));
+                        await Task.Delay(TimeSpan.FromSeconds(10));
                         count = 0;
                     }
                 }

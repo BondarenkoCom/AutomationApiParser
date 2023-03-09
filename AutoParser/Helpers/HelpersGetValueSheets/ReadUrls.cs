@@ -13,14 +13,12 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
 
         public async Task<string> GetRangeByUrls(string rangeLetter)
         {
-
             for (int rangeCount = 1; rangeCount <= 100; rangeCount++)
             {
                 try
                 {
-
                     //понять почему я пишу данные вообще во все колонки 
-                    // мне нужно писать все только в Одну колонку пока не столкнуть с Row is empty
+                    //мне нужно писать все только в Одну колонку пока не столкнуть с Row is empty
                     //после это заканчивать цикл чтобы получить новую букву для новой колонки
                     Console.WriteLine($"This range letter frim method GetRangeByUrls - {rangeLetter}");
                     var _readGoogle = new InitGoogleSheet();
@@ -28,31 +26,49 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
                     var spreadsheetId = JsonReader.GetValues().SpreadsheetId;
                     var UrlRange = $"C{rangeCount}";
                     var ResultRange = $"{rangeLetter}{rangeCount}";
+                    var DateRange = $"{rangeLetter}1";
 
                     var request_1_row_urls = resultAuth.Spreadsheets.Values.Get(spreadsheetId, UrlRange);
                     var request_2_row = resultAuth.Spreadsheets.Values.Get(spreadsheetId, ResultRange);
+                    var request_3_date = resultAuth.Spreadsheets.Values.Get(spreadsheetId, DateRange);
 
                     var responseUrl = request_1_row_urls.Execute();
                     var responseRow = request_2_row.Execute();
+                    var responseDate = request_3_date.Execute();
 
+                    var day = DateTime.Now.Day.ToString();
+                    var dayObject = (object)day;
+
+                    //&& responseRow.Values.Contains(dayObject)
                     if (responseUrl.Values != null && responseRow.Values == null)
                     {
-                        foreach (var item in responseUrl.Values)
+                        Console.WriteLine($"data is exist - {responseUrl.Values[0]}");
+
+                        if (responseDate.Values.Contains(dayObject))
                         {
-                            var stringUri = item[0].ToString();
-                            await _apiWebDriver.RunDriverClient(stringUri, ResultRange);
+                            foreach (var item in responseUrl.Values)
+                            {
+                                var stringUri = item[0].ToString();
+                                await _apiWebDriver.RunDriverClient(stringUri, ResultRange);
+                            }
                         }
+
+                        //foreach (var item in responseUrl.Values)
+                        //{
+                        //    var stringUri = item[0].ToString();
+                        //    await _apiWebDriver.RunDriverClient(stringUri, ResultRange);
+                        //}
                     }
                     else
                     {
-                        Console.WriteLine("Row is empty");
+                        Console.WriteLine("Row is empty or invalid data(Data only today)");
                     }
                     continue;
 
-                    if (rangeCount == 20)
+                    if (rangeCount == 10)
                     {
                         Console.WriteLine("Update counter and 60 second hold for API");
-                        await Task.Delay(TimeSpan.FromSeconds(60));
+                        await Task.Delay(TimeSpan.FromSeconds(3));
                         rangeCount = 0;
                     }
                 }
@@ -60,6 +76,7 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
                 {
                     Console.WriteLine(ex.Message);
                     continue;
+                    //break;
                 }
             }
             return null;

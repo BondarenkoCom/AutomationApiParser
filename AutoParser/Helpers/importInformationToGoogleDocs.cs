@@ -50,7 +50,7 @@ namespace AutoParser.Helpers
 
                     requestCounter++;
 
-                    if (requestCounter == 30)
+                    if (requestCounter == 10)
                     {
                         Thread.Sleep(TimeSpan.FromSeconds(10));
                         requestCounter = 0;
