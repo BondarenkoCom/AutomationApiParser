@@ -1,6 +1,7 @@
 ﻿using AutoParser.WebDriver;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,9 +18,6 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
             {
                 try
                 {
-                    //понять почему я пишу данные вообще во все колонки 
-                    //мне нужно писать все только в Одну колонку пока не столкнуть с Row is empty
-                    //после это заканчивать цикл чтобы получить новую букву для новой колонки
                     Console.WriteLine($"This range letter frim method GetRangeByUrls - {rangeLetter}");
                     var _readGoogle = new InitGoogleSheet();
                     var resultAuth = _readGoogle.InitializeSheetsService();
@@ -39,37 +37,48 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
                     var day = DateTime.Now.Day.ToString();
                     var dayObject = (object)day;
 
-                    //&& responseRow.Values.Contains(dayObject)
-                    if (responseUrl.Values != null && responseRow.Values == null)
+                    foreach (var item in responseDate.Values)
                     {
-                        Console.WriteLine($"data is exist - {responseUrl.Values[0]}");
+                        Console.WriteLine($"data is exist - {item[0].ToString()}");
 
-                        if (responseDate.Values.Contains(dayObject))
+                        var isDate = DateTime.TryParseExact(item[0].ToString(), "dd.MM.yyyy",
+                        CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime result);
+                        //if (isDate && result == DateTime.Now.Date)
+                        var today = DateTime.Today;
+
+                        if (isDate && result == today)
                         {
-                            foreach (var item in responseUrl.Values)
+                            if (responseUrl.Values != null && responseRow.Values == null)
                             {
-                                var stringUri = item[0].ToString();
-                                await _apiWebDriver.RunDriverClient(stringUri, ResultRange);
+                                foreach (var url in responseUrl.Values)
+                                {
+                                        
+                                    Console.WriteLine($"Url - {url[0].ToString()}");
+                                    Console.WriteLine($"Result range - {ResultRange}");
+
+                                    var stringUri = url[0].ToString();
+                                    await _apiWebDriver.RunDriverClient(stringUri, ResultRange);
+                                }
                             }
                         }
+                        else
+                        {
+                            string error = "Row is empty or invalid data(Data only today)";
+                            Console.WriteLine("Row is empty or invalid data(Data only today)");
+                            return error;
+                            //break;
+                            //break;
+                            //continue;
+                        }
+                        //break;
 
-                        //foreach (var item in responseUrl.Values)
-                        //{
-                        //    var stringUri = item[0].ToString();
-                        //    await _apiWebDriver.RunDriverClient(stringUri, ResultRange);
-                        //}
-                    }
-                    else
-                    {
-                        Console.WriteLine("Row is empty or invalid data(Data only today)");
-                    }
-                    continue;
 
-                    if (rangeCount == 10)
-                    {
-                        Console.WriteLine("Update counter and 60 second hold for API");
-                        await Task.Delay(TimeSpan.FromSeconds(3));
-                        rangeCount = 0;
+                        if (rangeCount == 10)
+                        {
+                            Console.WriteLine("Update counter and 60 second hold for API");
+                            await Task.Delay(TimeSpan.FromSeconds(3));
+                            rangeCount = 0;
+                        }
                     }
                 }
                 catch (Exception ex)
