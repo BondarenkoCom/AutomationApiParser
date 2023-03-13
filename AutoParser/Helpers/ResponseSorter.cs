@@ -1,5 +1,4 @@
 ﻿using HtmlAgilityPack;
-using System.Globalization;
 
 namespace AutoParser.Helpers
 {
@@ -63,6 +62,37 @@ namespace AutoParser.Helpers
             }
         }
 
+        public string HtmlConverterForDocDoc(string responseSort, string propName)
+        {
+            var htmlDoc = new HtmlDocument();
+            var figure = new FigureOutRating();
+            htmlDoc.LoadHtml(responseSort);
+
+            try
+            {
+                var htmlElement = htmlDoc.DocumentNode.SelectSingleNode($"//div[@class='{propName}']");
+                //Fix bug, write wrong value --r1ktdgvx-0:80px;--r1ktdgvx-1:16px
+                string styleAttribute = htmlElement.Attributes["style"].Value;
+                string heightAttribute = htmlElement.Attributes["height"].Value;
+                string widthAttribute = htmlElement.Attributes["width"].Value;
+
+                Console.WriteLine($"Height: {heightAttribute}, Width: {widthAttribute}");
+
+
+                //string[] cssValues = new string[] { heightAttribute, widthAttribute };
+                //TODO make type value for method figure GetStarsRating
+                //string styleAttributeFigure = string.Join("; ", cssValues);
+
+                var rankResult = figure.GetStarsRating(widthAttribute);
+
+                return rankResult.ToString() ?? $"Element {propName} is null (Empty)";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
         public string HtmlConverterForDoctorLaser(string responseSort, string propName)
         {
             var htmlDoc = new HtmlDocument();
@@ -105,8 +135,6 @@ namespace AutoParser.Helpers
 
         public List<string> HtmlConverter(string responseSort)
         {
-            //TODO 1 make return title
-            //TODO 2 make checker "What the site?" for choose json file with data for correct parsing
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(responseSort);
 

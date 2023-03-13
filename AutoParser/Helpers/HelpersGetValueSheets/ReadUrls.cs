@@ -13,7 +13,7 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
             {
                 try
                 {
-                    Console.WriteLine($"This range letter frim method GetRangeByUrls - {rangeLetter}");
+                    //Console.WriteLine($"This range letter frim method GetRangeByUrls - {rangeLetter}");
                     var _readGoogle = new InitGoogleSheet();
                     var resultAuth = _readGoogle.InitializeSheetsService();
                     var spreadsheetId = JsonReader.GetValues().SpreadsheetId;
@@ -34,7 +34,7 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
 
                     foreach (var item in responseDate.Values)
                     {
-                        Console.WriteLine($"data is exist - {item[0].ToString()}");
+                        //Console.WriteLine($"data is exist - {item[0].ToString()}");
 
                         var isDate = DateTime.TryParseExact(item[0].ToString(), "dd.MM.yyyy",
                         CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime result);
@@ -47,8 +47,8 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
                                 foreach (var url in responseUrl.Values)
                                 {
                                         
-                                    Console.WriteLine($"Url - {url[0].ToString()}");
-                                    Console.WriteLine($"Result range - {ResultRange}");
+                                    //Console.WriteLine($"Url - {url[0].ToString()}");
+                                    //Console.WriteLine($"Result range - {ResultRange}");
 
                                     var stringUri = url[0].ToString();
                                     await _apiWebDriver.RunDriverClient(stringUri, ResultRange);
@@ -57,8 +57,6 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
                         }
                         else
                         {
-                            //throw new InvalidDataException("Row is empty or invalid data (Data only today)");
-
                             string error = "Row is empty or invalid data(Data only today)";
                             Console.WriteLine("Error, not today date");
                             return error;
@@ -67,7 +65,7 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
                         if (countTimer == 10)
                         {
                             Console.WriteLine("Update counter and 60 second hold for API");
-                            await Task.Delay(TimeSpan.FromSeconds(10));
+                            await Task.Delay(TimeSpan.FromSeconds(30));
                             countTimer = 0;
                         }
                     }
@@ -76,7 +74,6 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
                 {
                     Console.WriteLine(ex.Message);
                     continue;
-                    //break;
                 }
             }
             return null;

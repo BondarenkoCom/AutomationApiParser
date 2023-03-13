@@ -4,35 +4,28 @@ namespace AutoParser.Helpers
 {
     public class FigureOutRating
     {
-        public string GetStarsRating(string HtmlAttribute)
+        public string GetStarsRating(string htmlAttribute)
         {
+            string extract = htmlAttribute
+                .Replace("width:", "")
+                .Replace("%", "")
+                .Replace(";", "")
+                .Replace("px", "")
+                .Trim();
 
-            string att = HtmlAttribute;
-
-            string extract = att.Replace("width:", "")
-                   .Replace("%", "")
-                   .Replace(";", "")
-                   .Replace("px", "").Trim().ToString();
-
-            try
+            if (double.TryParse(extract, NumberStyles.Float, CultureInfo.InvariantCulture, out double resExtract))
             {
-                double resExtract = double.Parse(extract, CultureInfo.InvariantCulture);
-
                 double result = (resExtract / 100) * 5;
-                double doubleValue;
-
                 string formattedResult = result.ToString("F1");
                 Console.WriteLine(formattedResult);
-                Console.WriteLine($"style width {HtmlAttribute} , result after figure = {formattedResult}\n");
-
+                Console.WriteLine($"Style width {htmlAttribute}, result after figure = {formattedResult}\n");
                 return formattedResult;
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine(e.Message);
-                return e.Message;
+                Console.WriteLine("Invalid input");
+                return "Invalid input";
             }
-            return null;
         }
     }
 }
