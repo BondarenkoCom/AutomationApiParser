@@ -1,10 +1,5 @@
 ﻿using AutoParser.WebDriver;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AutoParser.Helpers.HelpersGetValueSheets
 {
@@ -43,7 +38,6 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
 
                         var isDate = DateTime.TryParseExact(item[0].ToString(), "dd.MM.yyyy",
                         CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime result);
-                        //if (isDate && result == DateTime.Now.Date)
                         var today = DateTime.Today;
 
                         if (isDate && result == today)

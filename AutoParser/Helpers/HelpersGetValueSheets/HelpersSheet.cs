@@ -1,12 +1,4 @@
-﻿using Google.Apis.Sheets.v4;
-using Google.Apis.Sheets.v4.Data;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static AutoParser.Helpers.ReadGoogleSheets;
+﻿using System.Globalization;
 
 namespace AutoParser.Helpers.HelpersGetValueSheets
 {
