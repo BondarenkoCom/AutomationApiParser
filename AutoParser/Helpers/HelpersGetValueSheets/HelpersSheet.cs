@@ -60,7 +60,6 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
                
                 try
                 {
-
                     var cellValue = values[0][column].ToString();
                     var cellValueIndex = values[0].IndexOf(cellValue) + 1; // add 1 to get the actual index
                     string rangeLetter = null;
@@ -81,10 +80,9 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
                             $"Is range value - {rangeLetter},");
 
                         var resultsByUrls = await beginRequest.GetRangeByUrls(rangeLetter);
-                        
                         Console.WriteLine($"ranges from Google Sheets - {resultsByUrls}");
-                        //make catch error
-                        if (resultsByUrls == "Row is empty or invalid data(Data only today)")
+
+                        if (resultsByUrls.Contains("Error"))
                         {
                             count++;
                         }    

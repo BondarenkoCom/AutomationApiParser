@@ -14,7 +14,7 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
 
         public async Task<string> GetRangeByUrls(string rangeLetter)
         {
-            for (int rangeCount = 1; rangeCount <= 100; rangeCount++)
+            for (int rangeCount = 1 , countTimer = 1; rangeCount <= 100; rangeCount++ , countTimer++)
             {
                 try
                 {
@@ -63,21 +63,18 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
                         }
                         else
                         {
+                            //throw new InvalidDataException("Row is empty or invalid data (Data only today)");
+
                             string error = "Row is empty or invalid data(Data only today)";
-                            Console.WriteLine("Row is empty or invalid data(Data only today)");
+                            Console.WriteLine("Error, not today date");
                             return error;
-                            //break;
-                            //break;
-                            //continue;
                         }
-                        //break;
 
-
-                        if (rangeCount == 10)
+                        if (countTimer == 10)
                         {
                             Console.WriteLine("Update counter and 60 second hold for API");
-                            await Task.Delay(TimeSpan.FromSeconds(3));
-                            rangeCount = 0;
+                            await Task.Delay(TimeSpan.FromSeconds(10));
+                            countTimer = 0;
                         }
                     }
                 }
