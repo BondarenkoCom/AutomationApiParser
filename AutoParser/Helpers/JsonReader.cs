@@ -24,7 +24,7 @@ namespace AutoParser.Helpers
             }
             catch (Exception ex)
             {
-                Logger.WrtieLog($"Error processing element at path {ex.ToString()}");
+                Console.WriteLine($"Error processing element at path {ex.ToString()}");
                 return null;
             }
         }

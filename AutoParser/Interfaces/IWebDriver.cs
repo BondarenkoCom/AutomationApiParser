@@ -1,5 +1,4 @@
-﻿
-namespace AutoParser.Interfaces
+﻿namespace AutoParser.Interfaces
 {
     public interface IWebDriver
     {

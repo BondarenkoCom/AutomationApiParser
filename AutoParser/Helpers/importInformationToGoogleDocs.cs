@@ -1,7 +1,6 @@
 ﻿using Google.Apis.Sheets.v4;
 using Google.Apis.Sheets.v4.Data;
 using Google.Apis.Auth.OAuth2;
-using AutoParser.WebDriver;
 
 namespace AutoParser.Helpers
 {
@@ -43,14 +42,13 @@ namespace AutoParser.Helpers
                     var spreadsheetId = JsonReader.GetValues().SpreadsheetId;
                     var range = RatingRange;
 
-                    //TODO Make reaad in new collumn if is exist old
                     var request = sheetsService.Spreadsheets.Values.Update(requestBody, spreadsheetId, range);
                     request.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
                     request.Execute();
 
                     requestCounter++;
 
-                    if (requestCounter == 30)
+                    if (requestCounter == 10)
                     {
                         Thread.Sleep(TimeSpan.FromSeconds(10));
                         requestCounter = 0;
