@@ -87,8 +87,8 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
 
                     if (count == 10)
                     {
-                        Console.WriteLine("Update counter and 60 second hold for API");
-                        await Task.Delay(TimeSpan.FromSeconds(10));
+                        Console.WriteLine("Update counter and 20 second hold for API From Helper Sheet");
+                        await Task.Delay(TimeSpan.FromSeconds(20));
                         count = 0;
                     }
                 }

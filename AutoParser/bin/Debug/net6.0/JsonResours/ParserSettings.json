@@ -17,7 +17,8 @@
   "RankingStarsItemPropNameGastomir": "count-sm",
   "RankingStarsItemPropNameInfodoctor": "doc-rating__info-value",
   "RankingStarsItemPropNameKleos": "star-rating-svg",
-  "RankingStarsItemSpbDocdoc": "r1ktdgvx", 
+  "RankingStarsItemSpbDocdoc": "r1ktdgvx",
+  "RankingStarsItemSpbInfodoctor": "rating__bar", 
   "Selector": "$//div[@class=\"",
   "SelectorEnd": "\"]",
   "WebSites": [

@@ -9,14 +9,15 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
 
         public async Task<string> GetRangeByUrls(string rangeLetter)
         {
-            for (int rangeCount = 1 , countTimer = 1; rangeCount <= 100; rangeCount++ , countTimer++)
+            var _readGoogle = new InitGoogleSheet();
+            var resultAuth = _readGoogle.InitializeSheetsService();
+            var spreadsheetId = JsonReader.GetValues().SpreadsheetId;
+            var today = DateTime.Today;
+
+            for (int rangeCount = 1, countTimer = 1; rangeCount <= 400; rangeCount++, countTimer++)
             {
                 try
                 {
-                    //Console.WriteLine($"This range letter frim method GetRangeByUrls - {rangeLetter}");
-                    var _readGoogle = new InitGoogleSheet();
-                    var resultAuth = _readGoogle.InitializeSheetsService();
-                    var spreadsheetId = JsonReader.GetValues().SpreadsheetId;
                     var UrlRange = $"C{rangeCount}";
                     var ResultRange = $"{rangeLetter}{rangeCount}";
                     var DateRange = $"{rangeLetter}1";
@@ -29,16 +30,10 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
                     var responseRow = request_2_row.Execute();
                     var responseDate = request_3_date.Execute();
 
-                    var day = DateTime.Now.Day.ToString();
-                    var dayObject = (object)day;
-
                     foreach (var item in responseDate.Values)
                     {
-                        //Console.WriteLine($"data is exist - {item[0].ToString()}");
-
                         var isDate = DateTime.TryParseExact(item[0].ToString(), "dd.MM.yyyy",
                         CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime result);
-                        var today = DateTime.Today;
 
                         if (isDate && result == today)
                         {
@@ -46,9 +41,7 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
                             {
                                 foreach (var url in responseUrl.Values)
                                 {
-                                        
-                                    //Console.WriteLine($"Url - {url[0].ToString()}");
-                                    //Console.WriteLine($"Result range - {ResultRange}");
+                                    Console.WriteLine($"Result range - {ResultRange}");
 
                                     var stringUri = url[0].ToString();
                                     await _apiWebDriver.RunDriverClient(stringUri, ResultRange);
@@ -61,13 +54,13 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
                             Console.WriteLine("Error, not today date");
                             return error;
                         }
+                    }
 
-                        if (countTimer == 10)
-                        {
-                            Console.WriteLine("Update counter and 60 second hold for API");
-                            await Task.Delay(TimeSpan.FromSeconds(30));
-                            countTimer = 0;
-                        }
+                    if (countTimer == 10)
+                    {
+                        Console.WriteLine("Update counter and 30 second hold for API from ReadUrls");
+                        await Task.Delay(TimeSpan.FromSeconds(30));
+                        countTimer = 0;
                     }
                 }
                 catch (Exception ex)

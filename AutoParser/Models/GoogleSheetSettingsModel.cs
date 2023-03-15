@@ -23,6 +23,7 @@
         public string? RankingStarsItemPropNameKleos { get; set; }
         public string? RankingStarsItemPropNameInfodoctor { get; set; }
         public string? RankingStarsItemSpbDocdoc { get; set; }
+        public string? RankingStarsItemSpbInfodoctor { get; set; }
         public string? logPath { get; set; }
     }
 }
