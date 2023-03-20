@@ -21,7 +21,6 @@ namespace AutoParser.Helpers
             if (htmlElement != null)
             {
                 string contentValue = htmlElement.GetAttributeValue("content", "");
-                Console.WriteLine("Content value: " + contentValue);
 
                 string firstThreeCharacters = contentValue.Substring(0,3);
 
