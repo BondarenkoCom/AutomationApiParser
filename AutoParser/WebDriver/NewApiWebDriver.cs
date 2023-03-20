@@ -36,7 +36,10 @@ namespace AutoParser.WebDriver
                     { "syktyvkar.infodoctor.ru", (responseSort, propName) => new ResponseSorter().HtmlConverter(responseSort, JsonReader.GetValues().RankingStarsItemPropNameInfodoctor) },
                     { "kleos.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterForKleos(responseSort, JsonReader.GetValues().RankingStarsItemPropNameKleos)},
                     { "spb.docdoc.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterForDocDoc(responseSort, JsonReader.GetValues().RankingStarsItemSpbDocdoc)},
-                    { "spb.infodoctor.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterForKleos(responseSort, JsonReader.GetValues().RankingStarsItemSpbInfodoctor)}
+                    { "spb.infodoctor.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterForKleos(responseSort, JsonReader.GetValues().RankingStarsItemSpbInfodoctor)},
+                    { "krasotaimedicina.ru", (responseSort, propName) => new ResponseSorter().HtmlConverter(responseSort, JsonReader.GetValues().RankingStarsItemKrasotaimedicina)},
+                    { "like.doctor", (responseSort, propName) => new ResponseSorter().HtmlConverterForDoctorLaser(responseSort, JsonReader.GetValues().RankingStarsItemLikeDoctor)},
+                    { "med-otzyv.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterForMetaValue(responseSort, JsonReader.GetValues().RankingStarsItemMedOtzyv)}
                 };
 
                 if (responseSorterMethods.TryGetValue(host, out var method))
@@ -61,7 +64,7 @@ namespace AutoParser.WebDriver
                 }
                 else
                 {
-                    string errorMes = $"Check JSON settings for url - {url}";
+                    string errorMes = $"Check JSON";
                     Console.WriteLine(errorMes);
                     ImportInformationToGoogleDocs.PushToGoogleSheets(
                         errorMes,
@@ -74,6 +77,7 @@ namespace AutoParser.WebDriver
                 return null;
             }
         }
+        //TODO make time sleep for requests
 
         public void StatusTestCode()
         {

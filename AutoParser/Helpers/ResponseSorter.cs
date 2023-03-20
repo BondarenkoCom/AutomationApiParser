@@ -13,10 +13,34 @@ namespace AutoParser.Helpers
             return htmlDoc;
         }
 
+        public string HtmlConverterForMetaValue(string responseSort, string propName)
+        {
+            var htmlDoc = LoadHtmlDocument(responseSort);
+            var htmlElement = htmlDoc.DocumentNode.SelectSingleNode($"//meta[@itemprop='{propName}']");
+
+            if (htmlElement != null)
+            {
+                string contentValue = htmlElement.GetAttributeValue("content", "");
+
+                string firstThreeCharacters = contentValue.Substring(0,3);
+
+                return firstThreeCharacters;
+            }
+            else
+            {
+                string error = "Node not found.";
+                Console.WriteLine(error);
+                return error;
+
+            }
+            return null;
+        }
+
         public string HtmlConverter(string responseSort, string propName)
         {
             var htmlDoc = LoadHtmlDocument(responseSort);
             var htmlElement = htmlDoc.DocumentNode.SelectSingleNode($"//div[@class='{propName}']");
+
             return htmlElement?.InnerText ?? $"Element {propName} is null (Empty)";
         }
 

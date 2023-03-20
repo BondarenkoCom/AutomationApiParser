@@ -24,6 +24,9 @@
         public string? RankingStarsItemPropNameInfodoctor { get; set; }
         public string? RankingStarsItemSpbDocdoc { get; set; }
         public string? RankingStarsItemSpbInfodoctor { get; set; }
+        public string? RankingStarsItemKrasotaimedicina { get; set; }
         public string? logPath { get; set; }
+        public string? RankingStarsItemLikeDoctor { get; set; }
+        public string? RankingStarsItemMedOtzyv { get; set; }
     }
 }
