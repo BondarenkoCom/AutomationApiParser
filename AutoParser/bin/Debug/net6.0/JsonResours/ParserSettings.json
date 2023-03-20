@@ -19,11 +19,13 @@
   "RankingStarsItemPropNameKleos": "star-rating-svg",
   "RankingStarsItemSpbDocdoc": "r1ktdgvx",
   "RankingStarsItemSpbInfodoctor": "rating__bar", 
+  "RankingStarsItemKrasotaimedicina": "doctorsList30ItemLeftBlockRating",  
+  "RankingStarsItemLikeDoctor": "rating__wrap",
+  "RankingStarsItemMedOtzyv":"ratingValue",
   "Selector": "$//div[@class=\"",
   "SelectorEnd": "\"]",
   "WebSites": [
     "doctu.ru",
     "all-doc.ru"
-
   ]
 }

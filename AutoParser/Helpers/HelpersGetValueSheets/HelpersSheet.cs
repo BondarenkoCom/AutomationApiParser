@@ -11,7 +11,6 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
 
             try
             {
-
                 var spreadsheetId = JsonReader.GetValues().SpreadsheetId;
                 var rangeCount = 0;
                 var dateRange = "A1:Y1";
@@ -49,7 +48,6 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
           
             for (int count = 0 , rangeCount = 0; count <= 1; count++)
             {
-               
                 try
                 {
                     var cellValue = values[0][column].ToString();
