@@ -15,4 +15,10 @@
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="109.0.5414.7400" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="JsonResours\ParserSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

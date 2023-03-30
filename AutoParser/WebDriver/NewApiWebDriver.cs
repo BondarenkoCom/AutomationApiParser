@@ -15,6 +15,7 @@ namespace AutoParser.WebDriver
             {
                 host = host.Replace("www.", "");
             }
+
             Console.WriteLine($"Url - {host}");
 
             var client = new HttpClient();
