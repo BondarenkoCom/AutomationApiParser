@@ -1,4 +1,5 @@
 C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\publish\win-x64\JsonResours\ParserSettings.json
+C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\publish\win-x64\keys\farmaceptical-reviews.json
 C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\publish\win-x64\AutoParser.exe
 C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\publish\win-x64\selenium-manager\linux\selenium-manager
 C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Release\net6.0\publish\win-x64\selenium-manager\macos\selenium-manager
