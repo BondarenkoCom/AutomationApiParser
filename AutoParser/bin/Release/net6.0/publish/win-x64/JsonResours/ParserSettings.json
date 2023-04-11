@@ -17,6 +17,7 @@
   "RankingStarsItemPropNameGastomir": "count-sm",
   "RankingStarsItemPropNameInfodoctor": "doc-rating__info-value",
   "RankingStarsItemPropNameKleos": "star-rating-svg",
+  "RankingStarsItemKrasotaimedicina":"", 
   "Selector": "$//div[@class=\"",
   "SelectorEnd": "\"]",
   "WebSites": [

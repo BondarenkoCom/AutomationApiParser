@@ -1,5 +1,9 @@
 ﻿using AutoParser.WebDriver;
 using System.Globalization;
+using Google.Apis.Requests;
+using System.Net;
+using Google.Apis.Sheets.v4.Data;
+using Google;
 
 namespace AutoParser.Helpers.HelpersGetValueSheets
 {
@@ -26,9 +30,21 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
                     var request_2_row = resultAuth.Spreadsheets.Values.Get(spreadsheetId, ResultRange);
                     var request_3_date = resultAuth.Spreadsheets.Values.Get(spreadsheetId, DateRange);
 
-                    var responseUrl = request_1_row_urls.Execute();
-                    var responseRow = request_2_row.Execute();
-                    var responseDate = request_3_date.Execute();
+                    ValueRange responseUrl, responseRow, responseDate;
+
+                    try
+                    {
+                        responseUrl = request_1_row_urls.Execute();
+                        responseRow = request_2_row.Execute();
+                        responseDate = request_3_date.Execute();
+                    }
+                    catch (GoogleApiException ex) when (ex.HttpStatusCode == HttpStatusCode.TooManyRequests)
+                    {
+                        Console.WriteLine("Too many requests. Waiting 30 seconds before retrying...");
+                        await Task.Delay(TimeSpan.FromSeconds(30));
+                        rangeCount--; // Decrement rangeCount to retry the same iteration
+                        continue;
+                    }
 
                     foreach (var item in responseDate.Values)
                     {

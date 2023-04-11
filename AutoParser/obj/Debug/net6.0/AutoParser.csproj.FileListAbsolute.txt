@@ -26,3 +26,5 @@ C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\obj\Debug\net6.0\refi
 C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\obj\Debug\net6.0\AutoParser.pdb
 C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\obj\Debug\net6.0\AutoParser.genruntimeconfig.cache
 C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\obj\Debug\net6.0\ref\AutoParser.dll
+C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Debug\net6.0\JsonResours\ParserSettings.json
+C:\Users\Honor\source\repos\AutomationApiParser\AutoParser\bin\Debug\net6.0\keys\farmaceptical-reviews.json

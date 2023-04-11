@@ -8,10 +8,8 @@ namespace AutoParser.Helpers
     {
         public static GoogleSheetSettingsModel? GetValues()
         {
-
             try
             {
-
                 string basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
                 string jsonFilePath = Path.Combine(basePath, "JsonResours", "ParserSettings.json");
              

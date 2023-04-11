@@ -19,6 +19,10 @@ namespace AutoParser.WebDriver
             Console.WriteLine($"Url - {host}");
 
             var client = new HttpClient();
+
+            // Set User-Agent header to mimic a browser
+            client.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36");
+
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
@@ -37,10 +41,16 @@ namespace AutoParser.WebDriver
                     { "syktyvkar.infodoctor.ru", (responseSort, propName) => new ResponseSorter().HtmlConverter(responseSort, JsonReader.GetValues().RankingStarsItemPropNameInfodoctor) },
                     { "kleos.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterForKleos(responseSort, JsonReader.GetValues().RankingStarsItemPropNameKleos)},
                     { "spb.docdoc.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterForDocDoc(responseSort, JsonReader.GetValues().RankingStarsItemSpbDocdoc)},
-                    { "spb.infodoctor.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterForKleos(responseSort, JsonReader.GetValues().RankingStarsItemSpbInfodoctor)},
+                    { "spb.infodoctor.ru", (responseSort, propName) => new ResponseSorter().HtmlConverter(responseSort, JsonReader.GetValues().RankingStarsItemSpbInfodoctor)},
                     { "krasotaimedicina.ru", (responseSort, propName) => new ResponseSorter().HtmlConverter(responseSort, JsonReader.GetValues().RankingStarsItemKrasotaimedicina)},
                     { "like.doctor", (responseSort, propName) => new ResponseSorter().HtmlConverterForDoctorLaser(responseSort, JsonReader.GetValues().RankingStarsItemLikeDoctor)},
-                    { "med-otzyv.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterForMetaValue(responseSort, JsonReader.GetValues().RankingStarsItemMedOtzyv)}
+                    { "med-otzyv.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterForMetaValue(responseSort, JsonReader.GetValues().RankingStarsItemMedOtzyv)},
+                    { "vrach-russia.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterVrachRussia(responseSort, JsonReader.GetValues().RankingStarsItemVrachRussia)},
+                    { "meddoclab.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterMedClab(responseSort, JsonReader.GetValues().RankingStarsItemMeddoClab)},
+                    { "prodoctorov.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterProDoctorov(responseSort, JsonReader.GetValues().RankingStarsItemProDoctorov)},
+                    { "spb.vsevrachizdes.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterForAllDoctorsInHere(responseSort, JsonReader.GetValues().RankingStarsItemAllDoctorsInHere)},
+                    { "ulan-ude.zoon.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterUlanUdeZoon(responseSort, JsonReader.GetValues().RankingStarsItemZoonUlanUde)},
+                    { "spb.zoon.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterUlanUdeZoon(responseSort, JsonReader.GetValues().RankingStarsItemZoonUlanUde)}
                 };
 
                 if (responseSorterMethods.TryGetValue(host, out var method))

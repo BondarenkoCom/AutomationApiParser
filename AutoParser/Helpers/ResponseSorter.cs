@@ -1,10 +1,13 @@
 ﻿using HtmlAgilityPack;
+using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace AutoParser.Helpers
 {
     public class ResponseSorter
     {
         private readonly FigureOutRating _figure = new FigureOutRating();
+        private ConvertRating _convertRating = new ConvertRating();
 
         private HtmlDocument LoadHtmlDocument(string htmlContent)
         {
@@ -24,7 +27,8 @@ namespace AutoParser.Helpers
 
                 string firstThreeCharacters = contentValue.Substring(0,3);
 
-                return firstThreeCharacters;
+                var checkElement = _convertRating.CheckRating(firstThreeCharacters);
+                return checkElement ?? $"Element {propName} is null (Empty)";
             }
             else
             {
@@ -41,8 +45,101 @@ namespace AutoParser.Helpers
             var htmlDoc = LoadHtmlDocument(responseSort);
             var htmlElement = htmlDoc.DocumentNode.SelectSingleNode($"//div[@class='{propName}']");
 
-            return htmlElement?.InnerText ?? $"Element {propName} is null (Empty)";
+            var checkElement = _convertRating.CheckRating(htmlElement.InnerText);
+            return checkElement ?? $"Element {propName} is null (Empty)";
         }
+
+        public string HtmlConverterUlanUdeZoon(string responseSort, string propName)
+        {
+            var htmlDoc = LoadHtmlDocument(responseSort);
+            var htmlElement = htmlDoc.DocumentNode.SelectSingleNode($"//div[@class='{propName}']");
+
+            if (htmlElement != null)
+            {
+                var innerText = htmlElement.InnerText.Trim();
+                var regex = new Regex(@"(\d+,\d+)", RegexOptions.Compiled);
+                var match = regex.Match(innerText);
+
+                if (match.Success)
+                {
+                    var ratingValue = match.Value;
+                    return ratingValue;
+                }
+                else
+                {
+                    Console.WriteLine($"Error: Unable to find the rating value");
+                }
+            }
+
+            return $"Element {propName} is null (Empty)";
+        }
+
+        public string HtmlConverterForAllDoctorsInHere(string responseSort, string propName)
+        {
+            var htmlDoc = LoadHtmlDocument(responseSort);
+            var htmlElement = htmlDoc.DocumentNode.SelectSingleNode($"//div[@class='{propName}']");
+
+            if (htmlElement != null)
+            {
+                var dataRatingValue = htmlElement.GetAttributeValue("data-rating-value", string.Empty);
+                if (!string.IsNullOrEmpty(dataRatingValue))
+                {
+                    return dataRatingValue;
+                }
+            }
+
+            return $"Element {propName} is null (Empty)";
+        }
+
+        public string HtmlConverterVsevrachizdes(string responseSort, string propName)
+        {
+            var htmlDoc = LoadHtmlDocument(responseSort);
+            var htmlElement = htmlDoc.DocumentNode.SelectSingleNode($"//div[@class='{propName}']");
+
+            var checkElement = _convertRating.CheckRating(htmlElement.InnerText);
+            return checkElement ?? $"Element {propName} is null (Empty)";
+        }
+
+        public string HtmlConverterProDoctorov(string responseSort, string propName)
+        {
+            var htmlDoc = LoadHtmlDocument(responseSort);
+            var htmlElement = htmlDoc.DocumentNode.SelectSingleNode($"//div[@class='{propName}']");
+
+            if (htmlElement != null)
+            {
+                var styleAttribute = htmlElement.GetAttributeValue("style", string.Empty);
+                if (!string.IsNullOrEmpty(styleAttribute) && styleAttribute.Contains("width"))
+                {
+                    var widthValue = styleAttribute.Split(':')[1].Trim(); // Get the value after "width:"
+                    widthValue = widthValue.Replace("em", "").Trim(); // Remove "em" and any extra whitespace
+                    string firstThreeCharacters = widthValue.Substring(0, 3);
+
+                     //double widthValueAsNumber = double.Parse(widthValue, CultureInfo.InvariantCulture);
+
+                    return firstThreeCharacters.ToString();
+                }
+            }
+            return $"Element {propName} is null (Empty)";
+        }
+
+        public string HtmlConverterMedClab(string responseSort, string propName)
+        {
+            var htmlDoc = LoadHtmlDocument(responseSort);
+            var htmlElement = htmlDoc.DocumentNode.SelectSingleNode($"//div[@class='{propName}']");
+
+            var checkElement = _convertRating.CheckRating(htmlElement.InnerText, true);
+            return checkElement ?? $"Element {propName} is null (Empty)";
+        }
+
+        public string HtmlConverterVrachRussia(string responseSort, string propName)
+        {
+            var htmlDoc = LoadHtmlDocument(responseSort);
+            var ratingElement = htmlDoc.DocumentNode.SelectSingleNode("//div[@class='vrach_stars_score']/a");
+
+            var checkElement = _convertRating.CheckRating(ratingElement.InnerText);
+            return checkElement ?? $"Element {propName} is null (Empty)";
+        }
+
 
         public string HtmlConverterForAllDoc(string responseSort, string propName)
         {
@@ -52,7 +149,8 @@ namespace AutoParser.Helpers
 
             var rankResult = _figure.GetStarsRating(styleAttribute);
 
-            return rankResult.ToString() ?? $"Element {propName} is null (Empty)";
+            var checkElement = _convertRating.CheckRating(rankResult);
+            return checkElement ?? $"Element {propName} is null (Empty)";
         }
 
         public string HtmlConverterForKleos(string responseSort, string propName)
@@ -70,7 +168,8 @@ namespace AutoParser.Helpers
 
             var rankResult = _figure.GetStarsRating(widthAttribute);
 
-            return rankResult.ToString() ?? $"Element {propName} is null (Empty)";
+            var checkElement = _convertRating.CheckRating(rankResult);
+            return checkElement ?? $"Element {propName} is null (Empty)";
         }
 
         public string HtmlConverterForDoctorLaser(string responseSort, string propName)
@@ -79,7 +178,8 @@ namespace AutoParser.Helpers
             var span = htmlDoc.DocumentNode.SelectSingleNode($"//span[@class='{propName}']");
             var rankResult = span?.InnerText;
 
-            return rankResult ?? $"Element {propName} is null (Empty)";
+            var checkElement = _convertRating.CheckRating(rankResult);
+            return checkElement ?? $"Element {propName} is null (Empty)";
         }
 
         public string HtmlConverterForGastomir(string responseSort, string propName)
@@ -90,7 +190,8 @@ namespace AutoParser.Helpers
             HtmlNode ratingValueNode = ratingNode.SelectSingleNode(".//div[@class='value']");
             string ratingValue = ratingValueNode?.InnerText;
 
-            return ratingValue ?? $"Element {propName} is null (Empty)";
+            var checkElement = _convertRating.CheckRating(ratingValue);
+            return checkElement ?? $"Element {propName} is null (Empty)";
         }
 
         public List<string> HtmlConverter(string responseSort)
