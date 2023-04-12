@@ -4,7 +4,7 @@
     {
         public string CheckRating(string htmlElement, bool isForMeddClab = false)
         {
-            Console.WriteLine(htmlElement);
+            //Console.WriteLine(htmlElement);
 
             string trimmedElement = htmlElement.Trim();
 

@@ -33,7 +33,7 @@ namespace AutoParser.Helpers
             else
             {
                 string error = "Node not found.";
-                Console.WriteLine(error);
+                //Console.WriteLine(error);
                 return error;
 
             }
@@ -114,9 +114,12 @@ namespace AutoParser.Helpers
                     widthValue = widthValue.Replace("em", "").Trim(); // Remove "em" and any extra whitespace
                     string firstThreeCharacters = widthValue.Substring(0, 3);
 
-                     //double widthValueAsNumber = double.Parse(widthValue, CultureInfo.InvariantCulture);
+                    var checkElement = _convertRating.CheckRating(firstThreeCharacters);
+                    return checkElement ?? $"Element {propName} is null (Empty)";
 
-                    return firstThreeCharacters.ToString();
+                    //double widthValueAsNumber = double.Parse(widthValue, CultureInfo.InvariantCulture);
+
+                    //return firstThreeCharacters.ToString();
                 }
             }
             return $"Element {propName} is null (Empty)";
@@ -164,7 +167,7 @@ namespace AutoParser.Helpers
             var htmlElement = htmlDoc.DocumentNode.SelectSingleNode($"//div[@class='{propName}']");
             string widthAttribute = htmlElement.Attributes["width"].Value;
 
-            Console.WriteLine($" Width: {widthAttribute}");
+            //Console.WriteLine($" Width: {widthAttribute}");
 
             var rankResult = _figure.GetStarsRating(widthAttribute);
 
@@ -199,7 +202,7 @@ namespace AutoParser.Helpers
             var htmlDoc = LoadHtmlDocument(responseSort);
             var title = htmlDoc.DocumentNode.SelectSingleNode("//head/title").InnerHtml;
 
-            Console.WriteLine(title);
+            //Console.WriteLine(title);
             return null;
         }
     }

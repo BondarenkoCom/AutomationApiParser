@@ -16,7 +16,7 @@ namespace AutoParser.WebDriver
                 host = host.Replace("www.", "");
             }
 
-            Console.WriteLine($"Url - {host}");
+            //Console.WriteLine($"Url - {host}");
 
             var client = new HttpClient();
 
@@ -76,7 +76,7 @@ namespace AutoParser.WebDriver
                 else
                 {
                     string errorMes = $"Check JSON";
-                    Console.WriteLine(errorMes);
+                    //Console.WriteLine(errorMes);
                     ImportInformationToGoogleDocs.PushToGoogleSheets(
                         errorMes,
                         null,
@@ -107,7 +107,7 @@ namespace AutoParser.WebDriver
             HttpListenerContext context = httpListener.GetContext();
             HttpListenerResponse response = context.Response;
 
-            Console.WriteLine(response);
+            //Console.WriteLine(response);
             httpListener.Stop();
         }
     }

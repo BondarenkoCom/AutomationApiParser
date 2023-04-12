@@ -38,7 +38,7 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error while getting header values: {ex.Message}");
+                //Console.WriteLine($"Error while getting header values: {ex.Message}");
                 return null;
             }
         }

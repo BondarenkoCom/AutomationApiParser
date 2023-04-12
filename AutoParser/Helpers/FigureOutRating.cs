@@ -17,13 +17,13 @@ namespace AutoParser.Helpers
             {
                 double result = (resExtract / 100) * 5;
                 string formattedResult = result.ToString("F1");
-                Console.WriteLine(formattedResult);
-                Console.WriteLine($"Style width {htmlAttribute}, result after figure = {formattedResult}\n");
+                //Console.WriteLine(formattedResult);
+                //Console.WriteLine($"Style width {htmlAttribute}, result after figure = {formattedResult}\n");
                 return formattedResult;
             }
             else
             {
-                Console.WriteLine("Invalid input");
+                //Console.WriteLine("Invalid input");
                 return "Invalid input";
             }
         }
