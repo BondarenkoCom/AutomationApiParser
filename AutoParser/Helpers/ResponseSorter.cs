@@ -103,26 +103,19 @@ namespace AutoParser.Helpers
         public string HtmlConverterProDoctorov(string responseSort, string propName)
         {
             var htmlDoc = LoadHtmlDocument(responseSort);
-            var htmlElement = htmlDoc.DocumentNode.SelectSingleNode($"//div[@class='{propName}']");
+            var htmlElement = htmlDoc.DocumentNode.SelectSingleNode($"//div[contains(@class, '{propName}')]");
 
             if (htmlElement != null)
             {
-                var styleAttribute = htmlElement.GetAttributeValue("style", string.Empty);
-                if (!string.IsNullOrEmpty(styleAttribute) && styleAttribute.Contains("width"))
-                {
-                    var widthValue = styleAttribute.Split(':')[1].Trim(); // Get the value after "width:"
-                    widthValue = widthValue.Replace("em", "").Trim(); // Remove "em" and any extra whitespace
-                    string firstThreeCharacters = widthValue.Substring(0, 3);
+                string extractedValue = htmlElement.InnerText.Trim();
 
-                    var checkElement = _convertRating.CheckRating(firstThreeCharacters);
-                    return checkElement ?? $"Element {propName} is null (Empty)";
-
-                    //double widthValueAsNumber = double.Parse(widthValue, CultureInfo.InvariantCulture);
-
-                    //return firstThreeCharacters.ToString();
-                }
+                var checkElement = _convertRating.CheckRating(extractedValue);
+                return checkElement;
             }
-            return $"Element {propName} is null (Empty)";
+            else
+            {
+                return $"Element {propName} is null (Empty)";
+            }
         }
 
         public string HtmlConverterMedClab(string responseSort, string propName)

@@ -24,7 +24,7 @@
   "RankingStarsItemSpbInfodoctor": "doc-rating__info-value",
   "RankingStarsItemVrachRussia": "vrach_stars_score",
   "RankingStarsItemMeddoClab": "mrating__desc",
-  "RankingStarsItemProDoctorov": "b-stars-rate__progress",
+  "RankingStarsItemProDoctorov": "ui-text ui-text_h5 ui-text_color_black font-weight-medium mr-2",
   "RankingStarsItemAllDoctorsInHere": "c-rating",
   "RankingStarsItemZoonUlanUde": "prof-page__header-rating",
   "Selector": "$//div[@class=\"",
