@@ -64,8 +64,6 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
                             {
                                 foreach (var url in responseUrl.Values)
                                 {
-                                    //Console.WriteLine($"Result range - {ResultRange}");
-
                                     var stringUri = url[0].ToString();
                                     await _apiWebDriver.RunDriverClient(stringUri, ResultRange);
                                 }
@@ -74,7 +72,6 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
                         else
                         {
                             string error = "Row is empty or invalid data(Data only today)";
-                            //Console.WriteLine("Error, not today date");
                             return error;
                         }
                     }

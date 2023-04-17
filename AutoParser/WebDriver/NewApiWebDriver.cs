@@ -13,7 +13,6 @@ namespace AutoParser.WebDriver
             _responseSorterMethodProvider = responseSorterMethodProvider;
         }
 
-       
         public async Task<string> RunDriverClient(string url, string ratingRange)
         {
             var uri = new Uri(url);

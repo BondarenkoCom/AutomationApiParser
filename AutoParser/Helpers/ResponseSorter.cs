@@ -1,5 +1,4 @@
 ﻿using HtmlAgilityPack;
-using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace AutoParser.Helpers
@@ -33,7 +32,6 @@ namespace AutoParser.Helpers
             else
             {
                 string error = "Node not found.";
-                //Console.WriteLine(error);
                 return error;
 
             }
@@ -175,6 +173,19 @@ namespace AutoParser.Helpers
             var checkElement = _convertRating.CheckRating(rankResult);
             return checkElement ?? $"Element {propName} is null (Empty)";
         }
+
+        public string HtmlConverterForAptekaRu(string responseSort, string propName)
+        {
+            var htmlDoc = LoadHtmlDocument(responseSort);
+            var span = htmlDoc.DocumentNode.SelectSingleNode($"//span[@class='{propName}']");
+
+            var rankResult = _figure.GetStarsRating(span.InnerHtml);
+
+
+            var checkElement = _convertRating.CheckRating(rankResult);
+            return checkElement ?? $"Element {propName} is null (Empty)";
+        }
+
 
         public string HtmlConverterForGastomir(string responseSort, string propName)
         {

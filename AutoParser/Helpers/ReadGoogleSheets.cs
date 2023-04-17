@@ -22,7 +22,6 @@ namespace AutoParser.Helpers
             _apiWebDriver = new NewApiWebDriver(_doctorResponseSorter);
         }
 
-
         public async Task<string> GetDataFromGoogleSheetsWithRetry()
         {
             // Retry configuration

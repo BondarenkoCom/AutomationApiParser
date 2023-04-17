@@ -30,6 +30,7 @@
         public string? RankingStarsItemProDoctorov { get; set; }
         public string? RankingStarsItemAllDoctorsInHere { get; set; }
         public string? RankingStarsItemZoonUlanUde { get; set; }
+        public string? RankingStarsAptekaRu { get; set; }
         public string? logPath { get; set; }
         public string? RankingStarsItemLikeDoctor { get; set; }
         public string? RankingStarsItemMedOtzyv { get; set; }

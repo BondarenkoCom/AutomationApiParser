@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace AutoParser.Helpers
 {
@@ -11,19 +12,25 @@ namespace AutoParser.Helpers
                 .Replace("%", "")
                 .Replace(";", "")
                 .Replace("px", "")
+                .Replace("<s style=", "")
+                .Replace("/s", "")
                 .Trim();
 
-            if (double.TryParse(extract, NumberStyles.Float, CultureInfo.InvariantCulture, out double resExtract))
+            string pattern = @"\d+";
+            Regex regex = new Regex(pattern);
+            Match match = regex.Match(extract);
+
+            string extractedNumber = match.Value;
+            Console.WriteLine(extractedNumber);
+
+            if (double.TryParse(extractedNumber, NumberStyles.Float, CultureInfo.InvariantCulture, out double resExtract))
             {
                 double result = (resExtract / 100) * 5;
                 string formattedResult = result.ToString("F1");
-                //Console.WriteLine(formattedResult);
-                //Console.WriteLine($"Style width {htmlAttribute}, result after figure = {formattedResult}\n");
                 return formattedResult;
             }
             else
             {
-                //Console.WriteLine("Invalid input");
                 return "Invalid input";
             }
         }
