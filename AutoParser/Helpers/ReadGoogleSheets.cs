@@ -4,14 +4,24 @@ using Google.Apis.Sheets.v4;
 using Google.Apis.Sheets.v4.Data;
 using AutoParser.WebDriver;
 using AutoParser.Helpers.HelpersGetValueSheets;
+using AutoParser.ParsingDictionary;
 
 namespace AutoParser.Helpers
 {
     public class ReadGoogleSheets
     {
         private static SheetsService sheetsService;
-        private readonly NewApiWebDriver _apiWebDriver = new NewApiWebDriver();
+        //private readonly NewApiWebDriver _apiWebDriver = new NewApiWebDriver();
         public HelpersSheet helpersSheet = new HelpersSheet();
+
+        private readonly DoctorResponseSorter _doctorResponseSorter = new DoctorResponseSorter();
+        private readonly NewApiWebDriver _apiWebDriver;
+
+        public ReadGoogleSheets()
+        {
+            _apiWebDriver = new NewApiWebDriver(_doctorResponseSorter);
+        }
+
 
         public async Task<string> GetDataFromGoogleSheetsWithRetry()
         {

@@ -160,8 +160,6 @@ namespace AutoParser.Helpers
             var htmlElement = htmlDoc.DocumentNode.SelectSingleNode($"//div[@class='{propName}']");
             string widthAttribute = htmlElement.Attributes["width"].Value;
 
-            //Console.WriteLine($" Width: {widthAttribute}");
-
             var rankResult = _figure.GetStarsRating(widthAttribute);
 
             var checkElement = _convertRating.CheckRating(rankResult);
@@ -195,7 +193,6 @@ namespace AutoParser.Helpers
             var htmlDoc = LoadHtmlDocument(responseSort);
             var title = htmlDoc.DocumentNode.SelectSingleNode("//head/title").InnerHtml;
 
-            //Console.WriteLine(title);
             return null;
         }
     }

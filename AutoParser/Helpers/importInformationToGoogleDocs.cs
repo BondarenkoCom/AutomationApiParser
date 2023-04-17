@@ -52,7 +52,6 @@ namespace AutoParser.Helpers
                         var range = RatingRange;
 
                         var request = sheetsService.Spreadsheets.Values.Update(requestBody, spreadsheetId, range);
-                        //request.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
                         request.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED;
 
                         request.Execute();
