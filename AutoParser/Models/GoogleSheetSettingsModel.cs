@@ -2,6 +2,7 @@
 {
     public class GoogleSheetSettingsModel
     {
+        public string? GoogleTableProjectName { get; set; }
         public string? PathToKey { get; set; }
         public string? ApplicationName { get; set; }
         public string? SpreadsheetId { get; set; }

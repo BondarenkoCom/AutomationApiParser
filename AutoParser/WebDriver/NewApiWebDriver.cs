@@ -1,4 +1,5 @@
-﻿using AutoParser.Helpers;
+﻿using AutoParser.Factory;
+using AutoParser.Helpers;
 using AutoParser.Interfaces;
 using System.Net;
 
@@ -6,11 +7,16 @@ namespace AutoParser.WebDriver
 {
     internal class NewApiWebDriver : IWebDriver
     {
-        private readonly IResponseSorter _responseSorterMethodProvider;
+        private readonly FactoryRealize _factoryRealize;
+        private readonly IResponseSorterFactory _responseSorterFactory;
+        private readonly IResponseSorter _responseSorter;
 
-        public NewApiWebDriver(IResponseSorter responseSorterMethodProvider)
+        public NewApiWebDriver(IResponseSorterFactory responseSorterFactory)
         {
-            _responseSorterMethodProvider = responseSorterMethodProvider;
+            _factoryRealize = new FactoryRealize(responseSorterFactory);
+            _responseSorterFactory = responseSorterFactory;
+            _responseSorter = _responseSorterFactory.CreateResponseSorter(
+                JsonReader.GetValues().GoogleTableProjectName);
         }
 
         public async Task<string> RunDriverClient(string url, string ratingRange)
@@ -36,7 +42,7 @@ namespace AutoParser.WebDriver
 
             using (var response = await client.SendAsync(request))
             {
-                var responseSorterMethods = _responseSorterMethodProvider.GetResponseSorterMethods();
+                var responseSorterMethods = _responseSorter.GetResponseSorterMethods();
 
                 if (responseSorterMethods.TryGetValue(host, out var method))
                 {
@@ -61,7 +67,6 @@ namespace AutoParser.WebDriver
                 else
                 {
                     string errorMes = $"Check JSON";
-                    //Console.WriteLine(errorMes);
                     ImportInformationToGoogleDocs.PushToGoogleSheets(
                         errorMes,
                         null,
@@ -73,7 +78,6 @@ namespace AutoParser.WebDriver
                 return null;
             }
         }
-        //TODO make time sleep for requests
 
         public void StatusTestCode()
         {
@@ -92,7 +96,6 @@ namespace AutoParser.WebDriver
             HttpListenerContext context = httpListener.GetContext();
             HttpListenerResponse response = context.Response;
 
-            //Console.WriteLine(response);
             httpListener.Stop();
         }
     }

@@ -1,4 +1,5 @@
 {
+  "GoogleTableProjectName": "DoctorProject",
   "logPath": "C:\\Users\\Honor\\source\\repos\\AutomationApiParser\\AutoParser\\bin\\Release\\net6.0\\publish\\win-x64\\logs",
   "PathToKey": "farmaceptical-reviews.json",
   "ApplicationName": "AutoParser",

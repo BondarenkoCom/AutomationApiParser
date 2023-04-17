@@ -1,25 +1,18 @@
-﻿using System;
-using System.Threading.Tasks;
-using Google.Apis.Sheets.v4;
-using Google.Apis.Sheets.v4.Data;
-using AutoParser.WebDriver;
+﻿using AutoParser.WebDriver;
 using AutoParser.Helpers.HelpersGetValueSheets;
-using AutoParser.ParsingDictionary;
+using AutoParser.Factory;
 
 namespace AutoParser.Helpers
 {
     public class ReadGoogleSheets
     {
-        private static SheetsService sheetsService;
-        //private readonly NewApiWebDriver _apiWebDriver = new NewApiWebDriver();
         public HelpersSheet helpersSheet = new HelpersSheet();
-
-        private readonly DoctorResponseSorter _doctorResponseSorter = new DoctorResponseSorter();
+        private readonly ResponseSorterFactory _responseSorterFactory = new ResponseSorterFactory();
         private readonly NewApiWebDriver _apiWebDriver;
 
         public ReadGoogleSheets()
         {
-            _apiWebDriver = new NewApiWebDriver(_doctorResponseSorter);
+            _apiWebDriver = new NewApiWebDriver(_responseSorterFactory);
         }
 
         public async Task<string> GetDataFromGoogleSheetsWithRetry()

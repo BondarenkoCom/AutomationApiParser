@@ -25,8 +25,7 @@ namespace AutoParser.ParsingDictionary
                { "prodoctorov.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterProDoctorov(responseSort, JsonReader.GetValues().RankingStarsItemProDoctorov)},
                { "spb.vsevrachizdes.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterForAllDoctorsInHere(responseSort, JsonReader.GetValues().RankingStarsItemAllDoctorsInHere)},
                { "ulan-ude.zoon.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterUlanUdeZoon(responseSort, JsonReader.GetValues().RankingStarsItemZoonUlanUde)},
-               { "spb.zoon.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterUlanUdeZoon(responseSort, JsonReader.GetValues().RankingStarsItemZoonUlanUde)},
-               { "apteka.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterForAptekaRu(responseSort, JsonReader.GetValues().RankingStarsAptekaRu)}
+               { "spb.zoon.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterUlanUdeZoon(responseSort, JsonReader.GetValues().RankingStarsItemZoonUlanUde)}
             };
         }
     }

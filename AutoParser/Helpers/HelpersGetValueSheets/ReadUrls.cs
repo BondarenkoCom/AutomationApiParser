@@ -4,20 +4,21 @@ using Google.Apis.Requests;
 using System.Net;
 using Google.Apis.Sheets.v4.Data;
 using Google;
-using AutoParser.ParsingDictionary;
-
+using AutoParser.Factory;
 
 namespace AutoParser.Helpers.HelpersGetValueSheets
 {
     public class ReadUrls
     {
-        private readonly DoctorResponseSorter _doctorResponseSorter = new DoctorResponseSorter();
+        private readonly ResponseSorterFactory _responseSorterFactory = new ResponseSorterFactory();
         private readonly NewApiWebDriver _apiWebDriver;
 
         public ReadUrls()
         {
-            _apiWebDriver = new NewApiWebDriver(_doctorResponseSorter);
+            _apiWebDriver = new NewApiWebDriver(_responseSorterFactory);
         }
+
+
         public async Task<string> GetRangeByUrls(string rangeLetter)
         {
             var _readGoogle = new InitGoogleSheet();
