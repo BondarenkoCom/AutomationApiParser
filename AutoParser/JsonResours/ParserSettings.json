@@ -29,6 +29,7 @@
   "RankingStarsItemAllDoctorsInHere": "c-rating",
   "RankingStarsItemZoonUlanUde": "prof-page__header-rating",
   "RankingStarsAptekaRu": "ItemRating__stars",
+  "RankingStarsItemUteka": "rating__rate ui-title ui-title_size_s ui-title_type_high ui-title_responsive",
   "Selector": "$//div[@class=\"",
   "SelectorEnd": "\"]",
   "WebSites": [
