@@ -25,7 +25,7 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
             var spreadsheetId = JsonReader.GetValues().SpreadsheetId;
             var today = DateTime.Today;
 
-            for (int rangeCount = 1, countTimer = 1; rangeCount <= 3000; rangeCount++, countTimer++)
+            for (int rangeCount = 1, countTimer = 1; rangeCount <= 3500; rangeCount++, countTimer++)
             {
                 try
                 {
