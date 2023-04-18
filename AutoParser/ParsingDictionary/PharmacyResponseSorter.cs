@@ -10,9 +10,9 @@ namespace AutoParser.ParsingDictionary
             return new Dictionary<string, Func<string, string, string>>
             {
                { "apteka.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterForAptekaRu(responseSort, JsonReader.GetValues().RankingStarsAptekaRu)},
-               { "eapteka.ru", (responseSort, propName) => new ResponseSorter().HtmlConverter(responseSort, JsonReader.GetValues().RankingStarsItemPropNameDoctu)},
-               { "planetazdorovo.ru", (responseSort, propName) => new ResponseSorter().HtmlConverter(responseSort, JsonReader.GetValues().RankingStarsItemPropNameDoctu)},
-               { "uteka.ru", (responseSort, propName) => new ResponseSorter().HtmlConverter(responseSort, JsonReader.GetValues().RankingStarsItemPropNameDoctu)}
+               //{ "eapteka.ru", (responseSort, propName) => new ResponseSorter().HtmlConverterForEApteka(responseSort, JsonReader.GetValues().RankingStarsEApteka)},
+               //{ "planetazdorovo.ru", (responseSort, propName) => new ResponseSorter().CountActiveStarsAsString(responseSort, JsonReader.GetValues().RankingStarsPlanetaZdorovo)},
+               { "uteka.ru", (responseSort, propName) => new ResponseSorter().HtmlConverter(responseSort, JsonReader.GetValues().RankingStarsItemUteka)}
             };
         } 
     }

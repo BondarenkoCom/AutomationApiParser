@@ -206,5 +206,37 @@ namespace AutoParser.Helpers
 
             return null;
         }
+
+        public string HtmlConverterForEApteka(string responseSort, string propName)
+        {
+            var htmlDoc = LoadHtmlDocument(responseSort);
+
+            var classNode = htmlDoc.DocumentNode.SelectSingleNode($"//div[@class='{propName}']");
+
+            if (classNode == null)
+            {
+                return "empty";
+            }
+
+            return classNode.Descendants("li").Count().ToString();
+        }
+
+        public string CountActiveStarsAsString(string htmlContent, string propName)
+        {
+            var htmlDoc = LoadHtmlDocument(htmlContent);
+
+            var classNode = htmlDoc.DocumentNode.SelectSingleNode($"//div[@class='{propName}']");
+
+            if (classNode == null)
+            {
+                return "0";
+            }
+
+            int activeStarsCount = 
+                classNode.Descendants("span")                             
+                .Count(s => s.Attributes["class"]?.Value.Contains("vigroup-stars-elem active") == true);
+
+            return activeStarsCount.ToString();
+        }
     }
 }

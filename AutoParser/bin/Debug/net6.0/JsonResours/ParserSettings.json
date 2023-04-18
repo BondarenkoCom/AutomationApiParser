@@ -1,5 +1,5 @@
 {
-  "GoogleTableProjectName": "DoctorProject",
+  "GoogleTableProjectName": "PharmacyProject",
   "logPath": "C:\\Users\\Honor\\source\\repos\\AutomationApiParser\\AutoParser\\bin\\Release\\net6.0\\publish\\win-x64\\logs",
   "PathToKey": "farmaceptical-reviews.json",
   "ApplicationName": "AutoParser",
@@ -29,6 +29,9 @@
   "RankingStarsItemAllDoctorsInHere": "c-rating",
   "RankingStarsItemZoonUlanUde": "prof-page__header-rating",
   "RankingStarsAptekaRu": "ItemRating__stars",
+  "RankingStarsEApteka": "rating s5 d-inline",
+  "RankingStarsPlanetaZdorovo": "vigroup-stars mini",
+  "RankingStarsItemUteka": "rating__rate ui-title ui-title_size_s ui-title_type_high ui-title_responsive",
   "Selector": "$//div[@class=\"",
   "SelectorEnd": "\"]",
   "WebSites": [

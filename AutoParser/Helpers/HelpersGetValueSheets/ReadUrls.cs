@@ -1,6 +1,5 @@
 ﻿using AutoParser.WebDriver;
 using System.Globalization;
-using Google.Apis.Requests;
 using System.Net;
 using Google.Apis.Sheets.v4.Data;
 using Google;
@@ -26,7 +25,7 @@ namespace AutoParser.Helpers.HelpersGetValueSheets
             var spreadsheetId = JsonReader.GetValues().SpreadsheetId;
             var today = DateTime.Today;
 
-            for (int rangeCount = 1, countTimer = 1; rangeCount <= 400; rangeCount++, countTimer++)
+            for (int rangeCount = 1, countTimer = 1; rangeCount <= 3000; rangeCount++, countTimer++)
             {
                 try
                 {

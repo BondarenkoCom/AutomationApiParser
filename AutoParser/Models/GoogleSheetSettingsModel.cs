@@ -35,5 +35,9 @@
         public string? logPath { get; set; }
         public string? RankingStarsItemLikeDoctor { get; set; }
         public string? RankingStarsItemMedOtzyv { get; set; }
+        public string? RankingStarsEApteka { get; set; }
+        public string? RankingStarsPlanetaZdorovo { get; set; }
+        public string? RankingStarsItemUteka { get; set; }
+
     }
 }

@@ -1,9 +1,10 @@
 {
+  "GoogleTableProjectName": "DoctorProject",
   "logPath": "C:\\Users\\Honor\\source\\repos\\AutomationApiParser\\AutoParser\\bin\\Release\\net6.0\\publish\\win-x64\\logs",
   "PathToKey": "farmaceptical-reviews.json",
   "ApplicationName": "AutoParser",
   "SpreadsheetId": "15PGqRpgfTNypy2GYpPCdWhfZdLRYqK6ug-fhNgtLiCA",
-  "SpreadsheetIdForSecondTable": "1CgabLcNDVextIsZ0j7vqaGI3HMjg8PcVwYBfu4_y2Ms",
+  "SpreadsheetIdForSecondTable": " ",
   "SheetRange": "D2",
   "ReviewBodyClassname": "review__inner",
   "DataTimeClassname": "review__date ui-text ui-text_size_m ui-text_type_high ui-text_responsive",
@@ -24,9 +25,10 @@
   "RankingStarsItemSpbInfodoctor": "doc-rating__info-value",
   "RankingStarsItemVrachRussia": "vrach_stars_score",
   "RankingStarsItemMeddoClab": "mrating__desc",
-  "RankingStarsItemProDoctorov": "b-stars-rate__progress",
+  "RankingStarsItemProDoctorov": "ui-text ui-text_h5 ui-text_color_black font-weight-medium mr-2",
   "RankingStarsItemAllDoctorsInHere": "c-rating",
   "RankingStarsItemZoonUlanUde": "prof-page__header-rating",
+  "RankingStarsAptekaRu": "ItemRating__stars",
   "Selector": "$//div[@class=\"",
   "SelectorEnd": "\"]",
   "WebSites": [
